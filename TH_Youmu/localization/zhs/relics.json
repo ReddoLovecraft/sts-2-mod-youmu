@@ -1,0 +1,13 @@
+{
+  "TH_YOUMU-RIGHT_SWORD.title": "白楼剑",
+  "TH_YOUMU-RIGHT_SWORD.description": "战斗开始时，从你的[gold]抽牌堆[/gold]中选择至多[blue]1[/blue]张牌[gold]消耗[/gold]，然后获得[blue]0[/blue]层[gold]连段[/gold]。",
+  "TH_YOUMU-RIGHT_SWORD.flavor": "魂魄家的家传短剑，可以斩断人类的迷惘。",
+  "TH_YOUMU-RIGHT_SWORD.selectionScreenPrompt": "选择至多[blue]1[/blue]张牌[gold]消耗[/gold]。",
+  "TH_YOUMU-LEFT_SWORD.title": "楼观剑",
+  "TH_YOUMU-LEFT_SWORD.description": "拾起时，如果你有[gold]白楼剑[/gold]，将其替换为[gold]白楼剑&楼观剑[/gold]。\n每场战斗中你首次打出[gold]攻击牌[/gold]时，额外对所有敌人造成[blue]1[/blue]次这张牌所造成的伤害。",
+  "TH_YOUMU-LEFT_SWORD.flavor": "妖怪锻造的长刀楼观剑，妖梦自称楼观剑无法斩断的东西几乎不存在。",
+  "TH_YOUMU-TWO_SWORD.title": "白楼剑&楼观剑",
+  "TH_YOUMU-TWO_SWORD.description": "每回合内你首次打出[gold]攻击牌[/gold]时，额外对所有敌人造成[blue]1[/blue]次这张牌所造成的伤害。\n在你的回合开始时，从你的[gold]抽牌堆[/gold]中选择至多[blue]1[/blue]张牌[gold]消耗[/gold]。\n战斗开始时，获得[blue]0[/blue]层[gold]连段[/gold]。",
+  "TH_YOUMU-TWO_SWORD.flavor": "双剑合璧，天下无敌！",
+  "TH_YOUMU-TWO_SWORD.selectionScreenPrompt": "选择至多[blue]1[/blue]张牌[gold]消耗[/gold]。"
+}

@@ -1,0 +1,218 @@
+[gd_scene load_steps=9 format=3 uid="uid://y0umuec9k4v2p"]
+
+[ext_resource type="Script" uid="uid://y0umuenctrsc1" path="res://TH_Youmu/ArtWorks/VFX/NYoumuEnergyCounter.cs" id="1_k51tk"]
+[ext_resource type="Texture2D" uid="uid://y0umuc0rbtxp2" path="res://TH_Youmu/ArtWorks/Character/card_orb.png" id="2_728mg"]
+[ext_resource type="Texture2D" uid="uid://y0muenshtg5r2" path="res://TH_Youmu/ArtWorks/VFX/EnergySheet.png" id="3_5lm0b"]
+[ext_resource type="Material" path="res://TH_Youmu/ArtWorks/VFX/canvas_item_material_additive_shared.tres" id="4_4g2e3"]
+[ext_resource type="FontVariation" path="res://themes/kreon_bold_shared.tres" id="7_base_font"]
+
+[sub_resource type="FontVariation" id="FontVariation_kreon_bold_shared_font"]
+base_font = ExtResource("7_base_font")
+spacing_glyph = 2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_energy_sheet_frame"]
+atlas = ExtResource("3_5lm0b")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_energy_sheet_back"]
+atlas = ExtResource("3_5lm0b")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_energy_sheet_front"]
+atlas = ExtResource("3_5lm0b")
+region = Rect2(1280, 1280, 256, 256)
+
+[node name="SakuyaEnergyCounter" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 128.0
+offset_bottom = 128.0
+pivot_offset = Vector2(64, 64)
+script = ExtResource("1_k51tk")
+
+[node name="EnergyVfxBack" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(64, 64)
+
+[node name="BackGlow" type="Sprite2D" parent="EnergyVfxBack"]
+material = ExtResource("4_4g2e3")
+modulate = Color(0.2, 1, 0.8, 0.45)
+texture = SubResource("AtlasTexture_energy_sheet_back")
+scale = Vector2(0.75, 0.75)
+
+[node name="BackParticles" type="CPUParticles2D" parent="EnergyVfxBack"]
+material = ExtResource("4_4g2e3")
+emitting = true
+amount = 16
+lifetime = 0.55
+preprocess = 0.55
+explosiveness = 0.2
+randomness = 0.6
+local_coords = true
+emission_shape = 3
+emission_rect_extents = Vector2(14, 14)
+gravity = Vector2(0, 0)
+initial_velocity_min = 6.0
+initial_velocity_max = 14.0
+angular_velocity_min = -90.0
+angular_velocity_max = 90.0
+scale_amount_min = 0.15
+scale_amount_max = 0.3
+color = Color(0.2, 1, 0.8, 0.35)
+texture = SubResource("AtlasTexture_energy_sheet_back")
+
+[node name="Layers" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Layer1" type="TextureRect" parent="Layers"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_728mg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RotationLayers" type="Control" parent="Layers"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+z_index = 1
+z_as_relative = false
+
+[node name="Layer2" type="TextureRect" parent="Layers/RotationLayers"]
+unique_name_in_owner = true
+material = ExtResource("4_4g2e3")
+use_parent_material = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(64, 64)
+scale = Vector2(3, 3)
+mouse_filter = 2
+modulate = Color(0.2, 1, 0.8, 1)
+texture = SubResource("AtlasTexture_energy_sheet_frame")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Layer3" type="TextureRect" parent="Layers/RotationLayers"]
+material = ExtResource("4_4g2e3")
+use_parent_material = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(64, 64)
+scale = Vector2(3, 3)
+mouse_filter = 2
+modulate = Color(0.2, 1, 0.8, 0.35)
+texture = SubResource("AtlasTexture_energy_sheet_front")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="EnergyVfxFront" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(64, 64)
+
+[node name="FrontGlow" type="Sprite2D" parent="EnergyVfxFront"]
+material = ExtResource("4_4g2e3")
+modulate = Color(0.2, 1, 0.8, 0.35)
+texture = SubResource("AtlasTexture_energy_sheet_front")
+scale = Vector2(0.65, 0.65)
+
+[node name="Layer4" type="TextureRect" parent="Layers"]
+material = ExtResource("4_4g2e3")
+use_parent_material = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+modulate = Color(0.2, 1, 0.8, 0.15)
+texture = SubResource("AtlasTexture_energy_sheet_back")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Layer5" type="TextureRect" parent="Layers"]
+material = ExtResource("4_4g2e3")
+use_parent_material = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+modulate = Color(0.2, 1, 0.8, 0.08)
+texture = SubResource("AtlasTexture_energy_sheet_front")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="FrontParticles" type="CPUParticles2D" parent="EnergyVfxFront"]
+material = ExtResource("4_4g2e3")
+emitting = true
+amount = 10
+lifetime = 0.35
+preprocess = 0.35
+explosiveness = 0.3
+randomness = 0.7
+local_coords = true
+emission_shape = 3
+emission_rect_extents = Vector2(10, 10)
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 22.0
+angular_velocity_min = -120.0
+angular_velocity_max = 120.0
+scale_amount_min = 0.12
+scale_amount_max = 0.22
+color = Color(0.2, 1, 0.8, 0.25)
+texture = SubResource("AtlasTexture_energy_sheet_front")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -3.0
+offset_right = 2.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.96862745)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0.16511914, 0.68196696, 0.5680673, 0.7411765)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 16
+theme_override_constants/shadow_outline_size = 16
+theme_override_fonts/font = SubResource("FontVariation_kreon_bold_shared_font")
+theme_override_font_sizes/font_size = 24
+text = "3/3"
+horizontal_alignment = 1
+vertical_alignment = 1

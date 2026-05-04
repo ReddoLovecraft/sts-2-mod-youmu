@@ -1,0 +1,17 @@
+{
+  "TH_YOUMU-YOUMU_CHARACTER.aromaPrinciple": "[sine][blue]……斩断……[/blue][/sine]",
+  "TH_YOUMU-YOUMU_CHARACTER.banter.alive.endTurnPing": "……",
+  "TH_YOUMU-YOUMU_CHARACTER.banter.dead.endTurnPing": "……",
+  "TH_YOUMU-YOUMU_CHARACTER.cardsModifierDescription": "魂魄妖梦的卡牌现在会出现在奖励和商店中。",
+  "TH_YOUMU-YOUMU_CHARACTER.cardsModifierTitle": "魂魄妖梦卡牌",
+  "TH_YOUMU-YOUMU_CHARACTER.description": "半人半灵的庭师，擅长使用剑术。\n从敌人、灵体到弹幕甚至人的烦恼都可以斩断。",
+  "TH_YOUMU-YOUMU_CHARACTER.eventDeathPrevention": "可恶……怎会如此……",
+  "TH_YOUMU-YOUMU_CHARACTER.goldMonologue": "[sine]这些金币……也许能派上用场……[/sine]",
+  "TH_YOUMU-YOUMU_CHARACTER.possessiveAdjective": "她的",
+  "TH_YOUMU-YOUMU_CHARACTER.pronounObject": "她",
+  "TH_YOUMU-YOUMU_CHARACTER.pronounPossessive": "她的",
+  "TH_YOUMU-YOUMU_CHARACTER.pronounSubject": "她",
+  "TH_YOUMU-YOUMU_CHARACTER.title": "魂魄妖梦",
+  "TH_YOUMU-YOUMU_CHARACTER.titleObject": "妖梦",
+  "TH_YOUMU-YOUMU_CHARACTER.unlockText": "用[pink]{Prerequisite}[/pink]进行一局游戏来解锁这个角色。"
+}

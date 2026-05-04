@@ -1,0 +1,11 @@
+{
+  "id": "TH_Youmu",
+  "name": "魂魄妖梦",
+  "author": "Reddo",
+  "description": "加入了来自东方Project的角色，魂魄妖梦。",
+  "version": "0.3",
+  "has_pck": true,
+  "has_dll": true,
+  "dependencies": [ "BaseLib", "Patchoulib" ],
+  "affects_gameplay": true
+}

@@ -1,0 +1,43 @@
+using BaseLib.Extensions;
+using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands.Builders;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Nodes.Vfx;
+using MegaCrit.Sts2.Core.ValueProps;
+using Patchoulib.Scrpits.Main;
+using TH_Youmu.Scripts.Main;
+using TH_Youmu.Scrpits.Powers;
+
+namespace TH_Youmu.Scrpits.Cards
+{
+[Pool(typeof(YoumuCardPool))]
+public class AwakeHalf : YoumuCardModel
+{
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new CardsVar(2)];
+	
+	protected override IEnumerable<IHoverTip> ExtraHoverTips => (new IHoverTip[1]
+    {
+	 	Tools.GetStaticKeyword("Derive")
+    });
+	
+	public AwakeHalf() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.None)
+	{
+	}
+	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+	{
+		await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
+		await ToolBox.Derive(choiceContext,Owner,CardType.Skill,this.DynamicVars.Cards.IntValue);
+	}
+	protected override void OnUpgrade()
+	{
+		this.DynamicVars.Cards.UpgradeValueBy(1);
+	}
+}
+
+}
