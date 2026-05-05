@@ -21,7 +21,7 @@ namespace TH_Youmu.Scrpits.Cards
 public class GhostSwordGod : YoumuCardModel
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Ethereal];
-	protected override IEnumerable<DynamicVar> CanonicalVars => [new CardsVar(5)];
+	protected override IEnumerable<DynamicVar> CanonicalVars => [new CardsVar(50)];
 	public GhostSwordGod() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 	{
 	}
@@ -32,7 +32,7 @@ public class GhostSwordGod : YoumuCardModel
 	}
 	protected override void OnUpgrade()
 	{
-	    this.EnergyCost.UpgradeBy(-1);
+	    this.DynamicVars.Cards.UpgradeValueBy(25);
 	}
 }
 

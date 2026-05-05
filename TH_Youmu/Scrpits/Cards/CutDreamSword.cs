@@ -28,7 +28,7 @@ public class CutDreamSword : YoumuCardModel
 	}
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{
-		List<CardModel> list = PileType.Hand.GetPile(base.Owner).Cards.ToList();
+		List<CardModel> list = PileType.Hand.GetPile(base.Owner).Cards.Where(c=>c.Type!=CardType.Attack).ToList();
 		int cardCount = list.Count;
 		int addtion=cardCount*base.DynamicVars.Cards.IntValue;
 		foreach (CardModel item in list)

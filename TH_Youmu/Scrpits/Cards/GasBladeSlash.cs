@@ -23,7 +23,7 @@ public class GasBladeSlash : YoumuCardModel
 		HoverTipFactory.FromCard<GasBladeGreatSpin>()
 	    });
    
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(7, ValueProp.Move)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(7, ValueProp.Move),new CardsVar(1)];
 	public GasBladeSlash() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 	{
 	}
@@ -37,6 +37,7 @@ public class GasBladeSlash : YoumuCardModel
     {
        if(Owner.HasPower<SwordGasPower>()&&Owner.Creature.GetPowerAmount<SwordGasPower>()>=3)
        {	
+		  await PowerCmd.ModifyAmount(Owner.Creature.GetPower<SwordGasPower>(),-3,null,null);
 		  await CardPileCmd.AddToCombatAndPreview<GasBladeGreatSpin>(Owner.Creature, PileType.Hand, 1, addedByPlayer: true);
        }
        else

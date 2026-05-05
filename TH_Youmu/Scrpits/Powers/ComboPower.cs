@@ -199,7 +199,6 @@ namespace TH_Youmu.Scrpits.Powers
 			if (cardPlay.Card.Owner == base.Owner.Player)
 			{
                 this.Flash();
-                await PowerCmd.ModifyAmount(this,1,null,null);
                 if(cardPlay.Card.Type!=lastCardType)
                 {
                     if(Owner.HasPower<BizarreSixRealmsPower>())
@@ -227,6 +226,7 @@ namespace TH_Youmu.Scrpits.Powers
                     (await PowerCmd.Apply<StiffnessPower>(Owner,this.Amount,null,null)).SetStiffType(Scripts.Main.StiffType.None);
                     await ResetCounter();
                 }
+                await PowerCmd.ModifyAmount(this,1,null,null);
                 this.SetCardType(cardPlay.Card.Type);
 			}
 		}
@@ -258,7 +258,7 @@ namespace TH_Youmu.Scrpits.Powers
             decimal addtion=0;
             if(Owner.HasPower<StillWaterPower>())
             {
-                addtion=+Owner.GetPowerAmount<StillWaterPower>()/10;
+                addtion=+Owner.GetPowerAmount<StillWaterPower>()/10m;
             }
             decimal finalValue=(1+(addtion-0.1m)*this.Amount);
 		    return (finalValue>0?finalValue:0);

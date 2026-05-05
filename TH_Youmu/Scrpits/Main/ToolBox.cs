@@ -57,7 +57,7 @@ namespace TH_Youmu.Scripts.Main
             public static LocString GetCustomText(string targetTable,string entry,string postfix)
             {
                 string text = StringHelper.Slugify(entry);
-                LocString res = L10NStatic(targetTable,text + postfix);
+                LocString res = L10NStatic(text + postfix, targetTable);
                 return res;
             }
             public static bool WasLastCardPlayedSpecificCard(Player player,CardModel currentCard,CardType cardType,bool isAny=false)
@@ -88,12 +88,28 @@ namespace TH_Youmu.Scripts.Main
 		    }
 	
 
-		public static async Task TriggerWhenGuard(PlayerChoiceContext choiceContext, Creature target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource)
+		public static async Task TriggerWhenGuard(PlayerChoiceContext choiceContext, Creature target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource, CardModel guardCard)
 		{
 			 if(target.HasPower<SeizeReturnPower>())
 			 {
                 target.GetPower<SeizeReturnPower>().ShowEffect();
-				await CardPileCmd.Add(cardSource, PileType.Hand);
+				if (guardCard == null)
+				{
+					return;
+				}
+				if (guardCard.Pile?.Type == PileType.Hand)
+				{
+					return;
+				}
+
+				if (guardCard.Pile != null)
+				{
+					await CardPileCmd.Add(guardCard, PileType.Hand);
+				}
+				else
+				{
+					await CardPileCmd.AddGeneratedCardToCombat(guardCard, PileType.Hand, addedByPlayer: true);
+				}
 			 }
 		}
         public static async Task<List<CardModel>> Derive(PlayerChoiceContext choiceContext,Player player,CardType cardType,int amount,bool IsAny=false)
@@ -131,7 +147,7 @@ namespace TH_Youmu.Scripts.Main
                        {
                             player.Creature.GetPower<HalfHalfHalfPower>().ShowEffect();
                             await CardCmd.AutoPlay(choiceContext, card, null);
-                            await CardPileCmd.AddToCombatAndPreview<Clumsy>(player.Creature, PileType.Hand,cnt, addedByPlayer: true);
+                            await CardPileCmd.AddToCombatAndPreview<Clumsy>(player.Creature, PileType.Draw,cnt, addedByPlayer: true);
                        }
                     }
                     if(card is YoumuCardModel ymc)
@@ -166,7 +182,7 @@ namespace TH_Youmu.Scripts.Main
             {
                 await PowerCmd.Remove(player.Creature.GetPower<StiffnessPower>());
             }
-            SfxCmd.Play(YoumuInit.ToModSfxPath("TH_Youmu/ArtWorks/SFX/true.wav"));
+            SfxCmd.Play(YoumuInit.ToModSfxPath("TH_Youmu/ArtWorks/SFX/true.mp3"));
             await CardPileCmd.Add(lastPlayedCard, PileType.Hand);
             if(currentCard is YoumuCardModel ymc)
             {

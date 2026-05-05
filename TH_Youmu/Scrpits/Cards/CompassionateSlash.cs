@@ -29,7 +29,7 @@ public class CompassionateSlash : YoumuCardModel
        HoverTipFactory.FromPower<StiffnessPower>(),
 	   HoverTipFactory.FromKeyword(CardKeyword.Exhaust)
     });
-	public CompassionateSlash() : base(4, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+	public CompassionateSlash() : base(4, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
 	{
 	}
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

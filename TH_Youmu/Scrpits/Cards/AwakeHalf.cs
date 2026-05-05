@@ -26,7 +26,7 @@ public class AwakeHalf : YoumuCardModel
 	 	Tools.GetStaticKeyword("Derive")
     });
 	
-	public AwakeHalf() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.None)
+	public AwakeHalf() : base(1, CardType.Skill, CardRarity.Common, TargetType.None)
 	{
 	}
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

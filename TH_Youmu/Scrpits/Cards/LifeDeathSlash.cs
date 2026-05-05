@@ -46,7 +46,7 @@ public class LifeDeathSlash : YoumuCardModel
 	}
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{
-		await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).WithHitCount(this.DynamicVars.Cards.IntValue).FromCard(this)
+		await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this)
 			.Targeting(cardPlay.Target)
 			.WithHitVfxNode((Creature t) => NStabVfx.Create(t, facingEnemies: true, VfxColor.Purple))
 			.Execute(choiceContext);

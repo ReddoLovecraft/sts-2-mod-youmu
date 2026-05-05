@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Nodes.Audio;
 using MegaCrit.Sts2.Core.Saves;
 using System.Reflection;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 
 namespace TH_Youmu.Scripts.Main
 {
@@ -85,7 +86,7 @@ namespace TH_Youmu.Scripts.Main
 					}
 
 					ParameterInfo[] ps = m.GetParameters();
-					return ps.Length >= 1 && ps[0].ParameterType == typeof(string);
+					return ps.Any(p => p.ParameterType == typeof(string));
 				});
 		}
 
@@ -102,7 +103,8 @@ namespace TH_Youmu.Scripts.Main
 		private const float DefaultGain = 0.45f;
 		private static readonly Dictionary<string, float> GainOverrides = new()
 		{
-			["TH_Youmu/ArtWorks/SFX/characterselect.wav"] = 2.8f
+			["TH_Youmu/ArtWorks/SFX/characterselect.wav"] = 2.8f,
+			["TH_Youmu/ArtWorks/SFX/cast.wav"] = 3f
 		};
 
 		static IEnumerable<MethodBase> TargetMethods()
@@ -117,7 +119,7 @@ namespace TH_Youmu.Scripts.Main
 					}
 
 					ParameterInfo[] ps = m.GetParameters();
-					return ps.Length >= 1 && ps[0].ParameterType == typeof(string);
+					return ps.Any(p => p.ParameterType == typeof(string));
 				});
 		}
 
@@ -128,15 +130,32 @@ namespace TH_Youmu.Scripts.Main
 
 		public static bool HandlePlay(MethodBase __originalMethod, object[] __args)
 		{
-			if (__args.Length < 1 || __args[0] is not string path || !path.StartsWith(ModSfxPrefix))
+			int pathIndex = -1;
+			string? path = null;
+			for (int i = 0; i < __args.Length; i++)
+			{
+				if (__args[i] is string s && s.StartsWith(ModSfxPrefix, StringComparison.OrdinalIgnoreCase))
+				{
+					pathIndex = i;
+					path = s;
+					break;
+				}
+			}
+
+			if (pathIndex < 0 || string.IsNullOrEmpty(path))
 			{
 				return true;
 			}
 
 			float volume = 1f;
 			ParameterInfo[] ps = __originalMethod.GetParameters();
-			for (int i = 1; i < __args.Length && i < ps.Length; i++)
+			for (int i = 0; i < __args.Length && i < ps.Length; i++)
 			{
+				if (i == pathIndex)
+				{
+					continue;
+				}
+
 				if (__args[i] is float f && ps[i].ParameterType == typeof(float) && ps[i].Name != null && ps[i].Name.Contains("volume", StringComparison.OrdinalIgnoreCase))
 				{
 					volume = f;
@@ -145,8 +164,13 @@ namespace TH_Youmu.Scripts.Main
 			}
 			if (volume == 1f)
 			{
-				for (int i = 1; i < __args.Length; i++)
+				for (int i = 0; i < __args.Length; i++)
 				{
+					if (i == pathIndex)
+					{
+						continue;
+					}
+
 					if (__args[i] is float f)
 					{
 						volume = f;
@@ -156,7 +180,7 @@ namespace TH_Youmu.Scripts.Main
 
 			try
 			{
-				PlayModSfx(path, volume);
+				PlayModSfxPath(path, volume);
 			}
 			catch (System.Exception e)
 			{
@@ -166,8 +190,13 @@ namespace TH_Youmu.Scripts.Main
 			return false;
 		}
 
-		private static void PlayModSfx(string path, float volume)
+		public static void PlayModSfxPath(string path, float volume = 1f)
 		{
+			if (!path.StartsWith(ModSfxPrefix, StringComparison.OrdinalIgnoreCase))
+			{
+				return;
+			}
+
 			string localPath = path.Substring(ModSfxPrefix.Length);
 			string resPath = "res://" + localPath;
 			AudioStream? stream = ResourceLoader.Load<AudioStream>(resPath);
@@ -225,6 +254,71 @@ namespace TH_Youmu.Scripts.Main
 			}
 
 			return "Master";
+		}
+	}
+
+	[HarmonyPatch]
+	public static class YoumuCastAnimSfxPatch
+	{
+		static IEnumerable<MethodBase> TargetMethods()
+		{
+			return typeof(CreatureCmd)
+				.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static)
+				.Where(m =>
+				{
+					if (m.Name != "TriggerAnim")
+					{
+						return false;
+					}
+
+					ParameterInfo[] ps = m.GetParameters();
+					return ps.Length >= 2
+						&& ps[0].ParameterType == typeof(Creature)
+						&& ps.Any(p => p.ParameterType == typeof(string));
+				});
+		}
+
+		static void Prefix(object[] __args)
+		{
+			if (__args.Length < 2 || __args[0] is not Creature creature)
+			{
+				return;
+			}
+
+			string? trigger = null;
+			for (int i = 0; i < __args.Length; i++)
+			{
+				if (__args[i] is string s)
+				{
+					trigger = s;
+					break;
+				}
+			}
+
+			if (!string.Equals(trigger, "Cast", StringComparison.OrdinalIgnoreCase))
+			{
+				return;
+			}
+
+			try
+			{
+				YoumuCharacter? youmu = creature.Player?.Character as YoumuCharacter;
+				if (youmu == null)
+				{
+					return;
+				}
+
+				string sfx = youmu.CustomCastSfx;
+				if (string.IsNullOrWhiteSpace(sfx))
+				{
+					return;
+				}
+
+				ModSfxPatch.PlayModSfxPath(sfx, 1f);
+			}
+			catch
+			{
+			}
 		}
 	}
 }

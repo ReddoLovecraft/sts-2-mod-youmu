@@ -26,8 +26,8 @@ namespace TH_Youmu.Scrpits.Powers
         public override PowerType Type => PowerType.Buff;
         public override PowerStackType StackType => PowerStackType.Counter;
         public override Color AmountLabelColor => PowerModel._normalAmountLabelColor;
-        public override string? CustomPackedIconPath => "res://TH_Youmu/ArtWorks/Powers/YP32.png";
-        public override string? CustomBigIconPath => "res://TH_Youmu/ArtWorks/Powers/YP64.png";
+        public override string? CustomPackedIconPath => "res://TH_Youmu/ArtWorks/Powers/BSRP32.png";
+        public override string? CustomBigIconPath => "res://TH_Youmu/ArtWorks/Powers/BSRP64.png";
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.ForEnergy(this),HoverTipFactory.FromPower<StrengthPower>(),HoverTipFactory.FromPower<DexterityPower>()];
         
         public BizarreSixRealmsPower() { }

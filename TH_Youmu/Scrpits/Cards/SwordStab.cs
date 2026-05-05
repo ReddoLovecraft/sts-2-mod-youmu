@@ -2,10 +2,12 @@ using BaseLib.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.ValueProps;
 using Patchoulib.Scrpits.Main;
 using TH_Youmu.Scripts.Main;
@@ -16,24 +18,20 @@ namespace TH_Youmu.Scrpits.Cards
 [Pool(typeof(YoumuCardPool))]
 public class SwordStab : YoumuCardModel
 {
-   
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(7, ValueProp.Move)];
-	protected override IEnumerable<IHoverTip> ExtraHoverTips => (new IHoverTip[1]
-    {
-        Tools.GetStaticKeyword("Derive")
-    });
-	public SwordStab() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(3, ValueProp.Move),new CardsVar(3)];
+	public SwordStab() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 	{
 	}
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{
-		SfxCmd.Play("event:/sfx/characters/ironclad/ironclad_whirlwind");
-		await DamageCmd.Attack(DynamicVars.Damage.BaseValue) .FromCard(this) .Targeting(cardPlay.Target).Execute(choiceContext);
-		await ToolBox.Derive(choiceContext,Owner,CardType.Attack,1);
+		await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).WithHitCount(this.DynamicVars.Cards.IntValue).FromCard(this)
+			.Targeting(cardPlay.Target)
+			.WithHitVfxNode((Creature t) => NStabVfx.Create(t, facingEnemies: true, VfxColor.White))
+			.Execute(choiceContext);
 	}
 	protected override void OnUpgrade()
 	{
-		DynamicVars.Damage.UpgradeValueBy(3); 
+		DynamicVars.Cards.UpgradeValueBy(2);
 	}
 }
 

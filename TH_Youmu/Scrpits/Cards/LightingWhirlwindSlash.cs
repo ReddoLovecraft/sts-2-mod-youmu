@@ -10,6 +10,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
@@ -23,7 +24,7 @@ using TH_Youmu.Scrpits.Powers;
 
 namespace TH_Youmu.Scrpits.Cards
 {
-[Pool(typeof(YoumuCardPool))]
+[Pool(typeof(EventCardPool))]
 public class LightingWhirlwindSlash : YoumuCardModel
 {
 	 protected override bool HasEnergyCostX => true;

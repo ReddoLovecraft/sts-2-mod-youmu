@@ -22,7 +22,7 @@ public class EyeSword : YoumuCardModel
 	 public override int MaxUpgradeLevel =>3;
 	 public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Retain,CardModifier.GuardKeyword];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(10, ValueProp.Move),new CardsVar(1)];
-	public EyeSword() : base(3, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+	public EyeSword() : base(3, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 	{
 	}
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

@@ -20,7 +20,7 @@ public sealed class BondOfAttachment : YoumuCardModel
         });
 
     public BondOfAttachment()
-        : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.AllEnemies)
+        : base(0, CardType.Skill, CardRarity.Common, TargetType.AllEnemies)
     {
     }
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

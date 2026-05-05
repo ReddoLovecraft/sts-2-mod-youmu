@@ -18,7 +18,7 @@ using TH_Youmu.Scrpits.Powers;
 namespace TH_Youmu.Scrpits.Cards
 {
 [Pool(typeof(YoumuCardPool))]
-public class SakuyaSword : YoumuCardModel
+public class SakuraSword : YoumuCardModel
 {
    
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(7, ValueProp.Move)];
@@ -27,7 +27,7 @@ public class SakuyaSword : YoumuCardModel
 		HoverTipFactory.FromCard<SakuraFlash>(),
         HoverTipFactory.FromCard<Sakura>(base.IsUpgraded)
     });
-	public SakuyaSword() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
+	public SakuraSword() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
 	{
 	}
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

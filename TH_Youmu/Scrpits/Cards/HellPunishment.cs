@@ -19,9 +19,9 @@ namespace TH_Youmu.Scrpits.Cards
 [Pool(typeof(YoumuCardPool))]
 public class HellPunishment : YoumuCardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(3, ValueProp.Move),new CardsVar(3)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(4, ValueProp.Move),new CardsVar(3)];
 	
-	public HellPunishment() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
+	public HellPunishment() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
 	{
 	}
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

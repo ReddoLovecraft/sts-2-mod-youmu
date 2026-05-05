@@ -25,7 +25,8 @@ namespace TH_Youmu.Scrpits.Powers
     public sealed class KirisuteGomenPower : CustomPowerModel
     {
         public override PowerType Type => PowerType.Buff;
-        public override PowerStackType StackType => PowerStackType.Single;
+        public override PowerStackType StackType => PowerStackType.Counter;
+		public override bool IsInstanced => true;
         public override Color AmountLabelColor => PowerModel._normalAmountLabelColor;
         public override string? CustomPackedIconPath => "res://TH_Youmu/ArtWorks/Powers/KGP32.png";
         public override string? CustomBigIconPath => "res://TH_Youmu/ArtWorks/Powers/KGP64.png";        

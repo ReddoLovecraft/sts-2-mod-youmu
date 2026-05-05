@@ -19,7 +19,7 @@ using TH_Youmu.Scrpits.Powers;
 namespace TH_Youmu.Scrpits.Cards
 {
 [Pool(typeof(YoumuCardPool))]
-public class AthoughtCountlessKalpas : YoumuCardModel
+public class AThoughtCountlessKalpas : YoumuCardModel
 {
 	public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust,CardKeyword.Ethereal];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new  EnergyVar(1)];
@@ -28,13 +28,13 @@ public class AthoughtCountlessKalpas : YoumuCardModel
 	 	base.EnergyHoverTip,
 		HoverTipFactory.FromPower<WasteAwayPower>()
     });
-	public AthoughtCountlessKalpas() : base(3, CardType.Skill, CardRarity.Rare, TargetType.Self)
+	public AThoughtCountlessKalpas() : base(3, CardType.Skill, CardRarity.Rare, TargetType.Self)
 	{
 	}
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{
 		await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
-		await PowerCmd.Apply<AthoughtCountlessKalpasPower>(base.Owner.Creature,1,base.Owner.Creature,this);
+		await PowerCmd.Apply<AThoughtCountlessKalpasPower>(base.Owner.Creature,1,base.Owner.Creature,this);
 	}
 	protected override void OnUpgrade()
 	{

@@ -1,5 +1,6 @@
 using BaseLib.Extensions;
 using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -22,15 +23,31 @@ namespace TH_Youmu.Scrpits.Cards
 [Pool(typeof(YoumuCardPool))]
 public class BeyondSword : YoumuCardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(1, ValueProp.Move),new CardsVar(7)];
+	private const string _bonusDamageKey = "BonusDamage";
+
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(1, ValueProp.Move),new CardsVar(7), new IntVar(_bonusDamageKey, 0m)];
 	
-	public BeyondSword() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+	public BeyondSword() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
 	{
 	}
+
+	private void RefreshBonusDamage()
+	{
+		Player? owner = Owner;
+		if (owner == null)
+		{
+			return;
+		}
+
+		int bonus = GetStatusOrCurse(owner).Count();
+		base.DynamicVars[_bonusDamageKey].BaseValue = bonus;
+	}
+
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{
-		int dmgAddtion=GetStatusOrCurse(base.Owner).Count();
-		AttackCommand command = DamageCmd.Attack(base.DynamicVars.Damage.BaseValue+dmgAddtion).FromCard(this).TargetingRandomOpponents(base.CombatState).WithHitCount(this.DynamicVars.Cards.IntValue);
+		RefreshBonusDamage();
+		int bonus = base.DynamicVars[_bonusDamageKey].IntValue;
+		AttackCommand command = DamageCmd.Attack(base.DynamicVars.Damage.BaseValue + bonus).FromCard(this).TargetingRandomOpponents(base.CombatState).WithHitCount(this.DynamicVars.Cards.IntValue);
 		command.WithHitFx("vfx/hellraiser_attack_vfx", command.HitSfx, command.TmpHitSfx).
 		WithAttackerAnim("Attack", command.Attacker.Player.Character.CastAnimDelay).SpawningHitVfxOnEachCreature().WithHitVfxSpawnedAtBase();
 		await command.Execute(choiceContext);
@@ -42,6 +59,22 @@ public class BeyondSword : YoumuCardModel
 	protected override void OnUpgrade()
 	{
 		DynamicVars.Cards.UpgradeValueBy(2);
+	}
+
+	public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+	{
+		RefreshBonusDamage();
+		await Task.CompletedTask;
+	}
+
+	public override async Task AfterCardChangedPiles(CardModel card, PileType oldPileType, AbstractModel? source)
+	{
+		if (Owner != null && card.Owner == Owner)
+		{
+			RefreshBonusDamage();
+		}
+
+		await Task.CompletedTask;
 	}
 }
 

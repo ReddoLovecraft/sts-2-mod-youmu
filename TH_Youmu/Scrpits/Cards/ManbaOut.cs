@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -17,7 +18,7 @@ using TH_Youmu.Scrpits.Powers;
 
 namespace TH_Youmu.Scrpits.Cards
 {
-[Pool(typeof(YoumuCardPool))]
+[Pool(typeof(EventCardPool))]
 public class ManbaOut : YoumuCardModel
 {
    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];

@@ -37,7 +37,7 @@ public class GasBladeThrust : YoumuCardModel
 			.Targeting(cardPlay.Target)
 			.WithHitVfxNode((Creature t) => NStabVfx.Create(t, facingEnemies: true, VfxColor.Red))
 			.Execute(choiceContext);
-		CardModel dl=ModelDb.Card<HorizontalSlash>().ToMutable();
+		CardModel dl = base.CombatState.CreateCard<HorizontalSlash>(base.Owner);
 		if(base.IsUpgraded)
 		{
 			CardCmd.Upgrade(dl);

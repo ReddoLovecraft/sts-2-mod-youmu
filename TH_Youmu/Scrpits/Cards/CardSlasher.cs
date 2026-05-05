@@ -25,7 +25,7 @@ public class CardSlasher : YoumuCardModel
 		base.EnergyHoverTip,
 		HoverTipFactory.FromKeyword(CardKeyword.Exhaust)
     });
-	
+	  protected override IEnumerable<DynamicVar> CanonicalVars => [new  EnergyVar(1)];
 	public CardSlasher() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 	{
 	}

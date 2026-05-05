@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3fl1f06ylan4"
-path="res://.godot/imported/11SP64.png-1d40a2ca75836e168d0a07fb8b08bb3c.ctex"
+uid="uid://cq8kohcgax01"
+path="res://.godot/imported/22SP64.png-c04a2564a2e4e0b530546e7008347f62.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TH_Youmu/ArtWorks/Powers/11SP64.png"
-dest_files=["res://.godot/imported/11SP64.png-1d40a2ca75836e168d0a07fb8b08bb3c.ctex"]
+source_file="res://TH_Youmu/ArtWorks/Powers/22SP64.png"
+dest_files=["res://.godot/imported/22SP64.png-c04a2564a2e4e0b530546e7008347f62.ctex"]
 
 [params]
 

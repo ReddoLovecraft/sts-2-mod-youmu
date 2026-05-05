@@ -21,6 +21,7 @@ namespace TH_Youmu.Scrpits.Cards
 public class ReflectSlash : YoumuCardModel
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(12, ValueProp.Move)];
+	public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Retain,CardModifier.GuardKeyword];
 	public override int MaxUpgradeLevel =>3;
 	public override bool GainsBlock => true;
 	protected override bool ShouldGlowGoldInternal => base.CombatState?.HittableEnemies.Any((Creature e) => e.Monster.IntendsToAttack) ?? false;

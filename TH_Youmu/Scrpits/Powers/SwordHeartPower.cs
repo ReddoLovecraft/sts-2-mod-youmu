@@ -60,8 +60,8 @@ namespace TH_Youmu.Scrpits.Powers
 		        });
 		        if(OtherFlag)
 		        {
-			    await PlayerCmd.GainEnergy(this.DynamicVars.Energy.IntValue,Owner.Player);
-			    await CardPileCmd.Draw(choiceContext,this.DynamicVars.Cards.IntValue,Owner.Player);
+			    await PlayerCmd.GainEnergy(Amount,Owner.Player);
+			    await CardPileCmd.Draw(choiceContext,Amount,Owner.Player);
 		        }
             }
 			

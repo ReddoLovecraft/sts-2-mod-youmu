@@ -23,7 +23,7 @@ public class LoseMyMeat : YoumuCardModel
     {
         HoverTipFactory.FromCard<SlashYourBone>(base.IsUpgraded)
     });
-	public LoseMyMeat() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
+	public LoseMyMeat() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
 	{
 	}
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

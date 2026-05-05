@@ -20,21 +20,21 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace TH_Youmu.Scrpits.Powers
 {
-    public sealed class AthoughtCountlessKalpasPower : CustomPowerModel
+    public sealed class AThoughtCountlessKalpasPower : CustomPowerModel
     {
         private readonly Dictionary<CardModel, decimal> _originalCostsThisCombat = new();
 
         public override PowerType Type => PowerType.Buff;
         public override PowerStackType StackType => PowerStackType.Single;
         public override Color AmountLabelColor => PowerModel._normalAmountLabelColor;
-        public override string? CustomPackedIconPath => "res://TH_Youmu/ArtWorks/Powers/ACKP32.png";
-        public override string? CustomBigIconPath => "res://TH_Youmu/ArtWorks/Powers/ACKP64.png";
+        public override string? CustomPackedIconPath => "res://TH_Youmu/ArtWorks/Powers/ATCKP32.png";
+        public override string? CustomBigIconPath => "res://TH_Youmu/ArtWorks/Powers/ATCKP64.png";
         protected override IEnumerable<IHoverTip> ExtraHoverTips => (new IHoverTip[1]
     {
 		HoverTipFactory.FromPower<WasteAwayPower>()
     });
         
-        public AthoughtCountlessKalpasPower() { }
+        public AThoughtCountlessKalpasPower() { }
 
         public override bool TryModifyEnergyCostInCombat(CardModel card, decimal originalCost, out decimal modifiedCost)
         {

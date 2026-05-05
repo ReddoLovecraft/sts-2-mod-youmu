@@ -30,12 +30,12 @@ public class RiseUpSlash : YoumuCardModel
 	}
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{
-		AttackCommand attackCommand = await DamageCmd.Attack(base.DynamicVars.OstyDamage.BaseValue).FromOsty(base.Owner.Osty, this).TargetingRandomOpponents(base.CombatState)
+		AttackCommand attackCommand = await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
 				.WithHitFx("vfx/vfx_attack_blunt", null, "blunt_attack.mp3")
 				.Execute(choiceContext);
 		if(cardPlay.Target!=null&&cardPlay.Target.IsAlive)
 		{
-			await PowerCmd.Apply<RiseUpSlashPower>(cardPlay.Target,attackCommand.Results.Sum((DamageResult r) => r.TotalDamage + r.OverkillDamage),Owner.Creature,this);
+			await PowerCmd.Apply<PiercingWailPower>(cardPlay.Target,attackCommand.Results.Sum((DamageResult r) => r.TotalDamage + r.OverkillDamage),Owner.Creature,this);
 		}
 	}
 	protected override void OnUpgrade()

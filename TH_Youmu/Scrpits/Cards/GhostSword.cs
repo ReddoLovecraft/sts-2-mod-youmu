@@ -30,7 +30,7 @@ public class GhostSword : YoumuCardModel
 	 	HoverTipFactory.FromPower<VulnerablePower>(),
 	 	HoverTipFactory.FromCard<Decay>(),		
        });
-	public GhostSword() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+	public GhostSword() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 	{
 	}
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

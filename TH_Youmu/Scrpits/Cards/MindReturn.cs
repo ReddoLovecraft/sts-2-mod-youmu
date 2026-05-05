@@ -28,6 +28,10 @@ public class MindReturn : YoumuCardModel
 		await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.IntValue,Owner);
 		CardSelectorPrefs prefs = new CardSelectorPrefs(base.SelectionScreenPrompt, 1);
 		CardPile pile = PileType.Discard.GetPile(base.Owner);
+		if(pile.Cards.Count == 0)
+		{
+			return;
+		}
 		CardModel cardModel = (await CardSelectCmd.FromSimpleGrid(choiceContext, pile.Cards, base.Owner, prefs)).FirstOrDefault();
 		if (cardModel != null)
 		{

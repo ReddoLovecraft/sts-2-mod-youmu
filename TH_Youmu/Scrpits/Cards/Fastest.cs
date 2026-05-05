@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -17,7 +18,7 @@ using TH_Youmu.Scrpits.Powers;
 
 namespace TH_Youmu.Scrpits.Cards
 {
-[Pool(typeof(YoumuCardPool))]
+[Pool(typeof(EventCardPool))]
 public class Fastest : YoumuCardModel
 {
 	public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Innate];
@@ -28,7 +29,7 @@ public class Fastest : YoumuCardModel
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{
 		await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
-		await PowerCmd.Apply<MachineLearningPower>(Owner.Creature,5,Owner.Creature,this);
+		await PowerCmd.Apply<MachineLearningPower>(Owner.Creature,2,Owner.Creature,this);
 	}
 	protected override void OnUpgrade()
 	{

@@ -19,7 +19,7 @@ namespace TH_Youmu.Scrpits.Cards
 [Pool(typeof(YoumuCardPool))]
 public class SevenSoulsTaboos : YoumuCardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6, ValueProp.Move)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6, ValueProp.Move),new EnergyVar(1),new CardsVar(1)];
     protected override bool ShouldGlowGoldInternal => base.CombatState?.HittableEnemies.Any((Creature e) => ToolBox.GetDebuffTotalCount(e)>0) ?? false;
 	
 	protected override IEnumerable<IHoverTip> ExtraHoverTips => (new IHoverTip[1]

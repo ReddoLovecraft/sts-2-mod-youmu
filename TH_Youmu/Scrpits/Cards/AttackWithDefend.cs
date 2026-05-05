@@ -23,7 +23,7 @@ public class AttackWithDefend : YoumuCardModel,ITranscendenceCard
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{
 		await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
-		await PowerCmd.Apply<AttackWithDefendPower>(Owner.Creature,1,Owner.Creature,this);
+		await PowerCmd.Apply<AttackWithDefendPower>(Owner.Creature,DynamicVars.Cards.IntValue,Owner.Creature,this);
 	}
 	protected override void OnUpgrade()
 	{

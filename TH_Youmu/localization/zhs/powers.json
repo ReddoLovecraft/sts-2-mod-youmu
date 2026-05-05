@@ -1,7 +1,7 @@
 {
   "TH_YOUMU-SWORD_GAS_POWER.title": "剑气",
-  "TH_YOUMU-SWORD_GAS_POWER.description": "使用[gold]攻击牌[/gold]造成伤害时，额外使敌人失去[blue]1[/blue]点生命，在你的回合结束时移除。\n[gold]右键[/gold][green]妖梦卡牌[/green]，可[gold]消耗[/gold]所有[gold]剑气[/gold]并将这张牌造成的伤害在本场战斗中提高等量点。\n在你的回合结束时移除。",
-  "TH_YOUMU-SWORD_GAS_POWER.smartDescription": "使用[gold]攻击牌[/gold]造成伤害时，额外使敌人失去[blue]{Amount}[/blue]点生命，在你的回合结束时移除。\n[gold]右键[/gold][green]妖梦卡牌[/green]，可[gold]消耗[/gold]所有[gold]剑气[/gold]并将这张牌造成的伤害在本场战斗中提高等量点。\n在你的回合结束时移除。",
+  "TH_YOUMU-SWORD_GAS_POWER.description": "使用[gold]攻击牌[/gold]造成伤害时，额外使敌人失去[blue]1[/blue]点生命，在你的回合结束时移除。\n[gold]右键[/gold][green]妖梦卡牌[/green]，可[gold]消耗[/gold]所有[gold]剑气[/gold]并将这张牌造成的伤害在本场战斗中提高等量点。",
+  "TH_YOUMU-SWORD_GAS_POWER.smartDescription": "使用[gold]攻击牌[/gold]造成伤害时，额外使敌人失去[blue]{Amount}[/blue]点生命，在你的回合结束时移除。\n[gold]右键[/gold][green]妖梦卡牌[/green]，可[gold]消耗[/gold]所有[gold]剑气[/gold]并将这张牌造成的伤害在本场战斗中提高等量点。",
   "TH_YOUMU-STIFFNESS_POWER.title": "硬直",
   "TH_YOUMU-STIFFNESS_POWER.description": "本回合内下[blue]1[/blue]张牌不能打出[gold]攻击牌[/gold]，打出其他卡牌时将层数减少[blue]1[/blue]层。",
   "TH_YOUMU-STIFFNESS_POWER.smartDescription": "本回合内下[blue]{Amount}[/blue]张牌不能打出[gold]攻击牌[/gold]，打出其他卡牌时将层数减少[blue]1[/blue]层。\n当前[gold]硬直[/gold]等级为：{Type}。",
@@ -60,7 +60,7 @@
   "TH_YOUMU-DEATH_HALF_POWER.smartDescription": "每当敌人受到来源于你的伤害时，获得等量[gold]消亡[/gold]。",
   "TH_YOUMU-STILL_WATER_POWER.title": "明镜止水",
   "TH_YOUMU-STILL_WATER_POWER.description": "你每有一层[gold]连段[/gold]，造成的伤害增加层数*10%。",
-  "TH_YOUMU-STILL_WATER_POWER.smartDescription": "你每有一层[gold]连段[/gold]，造成的伤害增加[blue]{Amount}[/blue]0%。",
+  "TH_YOUMU-STILL_WATER_POWER.smartDescription": "你每有一层[gold]连段[/gold]，造成的伤害增加[blue]{Amount}0%[/blue]。",
   "TH_YOUMU-HEART_EYE_POWER.title": "瞑斩「楼观予我心之眼」",
   "TH_YOUMU-HEART_EYE_POWER.description": "每当你打出[gold]攻击牌[/gold]时，[gold]攻击派生[/gold]层数。",
   "TH_YOUMU-HEART_EYE_POWER.smartDescription": "每当你打出[gold]攻击牌[/gold]时，[gold]攻击派生[/gold][blue]{Amount}[/blue]。",

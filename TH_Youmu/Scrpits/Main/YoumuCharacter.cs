@@ -64,6 +64,8 @@ namespace TH_Youmu.Scripts.Main
 			ModelDb.Card<Defend>(),
 			ModelDb.Card<Defend>(),
 			ModelDb.Card<Defend>(),
+			ModelDb.Card<AheadSlash>(),
+			ModelDb.Card<AttackWithDefend>()
 	];
 
 		// 初始遗物
@@ -108,25 +110,5 @@ namespace TH_Youmu.Scripts.Main
 			creatureAnimator.AddAnyState("relaxed_loop", animState5);		
 			return creatureAnimator;
 		}
-        //卡牌设计，妖梦
-        /*
-
-		
-		半人半灵的半吊子
-		1->0c蓝能力
-		每当你派生时，将被派生的卡牌自动打出1次并将1张笨拙洗入你的抽牌堆。
-
-		切舍御免
-		2->1c金能力
-		每当你失去生命时，将你在本场战斗中造成的伤害提高1倍。
-
-		事件：食材采购（+食物遗物）
-		事件：uuz大人（要食物遗物给删牌/直接拿钱）
-
-		触发当身技后，获得1层缓冲。遗物吧
-
-        
-		
-		*/
     }
 }

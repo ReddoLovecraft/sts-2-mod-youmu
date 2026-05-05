@@ -21,13 +21,14 @@ public class Iaido : YoumuCardModel
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(10, ValueProp.Move)];
 	protected override bool ShouldGlowGoldInternal => ToolBox.WasLastCardPlayedSpecificCard(Owner,this,CardType.Skill);
+	public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Retain];
 	
 	protected override IEnumerable<IHoverTip> ExtraHoverTips => (new IHoverTip[1]
     {
 	 	HoverTipFactory.FromPower<StiffnessPower>()
     });
 	
-	public Iaido() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
+	public Iaido() : base(1, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
 	{
 	}
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

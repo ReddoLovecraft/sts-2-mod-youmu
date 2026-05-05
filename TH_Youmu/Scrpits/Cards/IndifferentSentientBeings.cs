@@ -17,7 +17,7 @@ using TH_Youmu.Scrpits.Powers;
 namespace TH_Youmu.Scrpits.Cards
 {
 [Pool(typeof(YoumuCardPool))]
-public class IndifferentSentientBegins : YoumuCardModel
+public class IndifferentSentientBeings : YoumuCardModel
 {
 	public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 	public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
@@ -26,13 +26,13 @@ public class IndifferentSentientBegins : YoumuCardModel
 	 	Tools.GetStaticKeyword("Derive")
     });
 	
-	public IndifferentSentientBegins() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AllAllies)
+	public IndifferentSentientBeings() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AllAllies)
 	{
 	}
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{
 		IEnumerable<Creature> enumerable = from c in base.CombatState.GetTeammatesOf(base.Owner.Creature)
-			where c != null && c.IsAlive && c.IsPlayer&&c.Player!=base.Owner
+			where c != null && c.IsAlive && c.IsPlayer
 			select c;
 		await ToolBox.Derive(choiceContext,Owner,CardType.None,enumerable.Count(),true);
 	}

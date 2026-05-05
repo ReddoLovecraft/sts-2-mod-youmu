@@ -1,6 +1,7 @@
 using BaseLib.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.CardSelection;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -23,8 +24,10 @@ namespace TH_Youmu.Scrpits.Cards
 [Pool(typeof(YoumuCardPool))]
 public class UnexhaustedSoul : YoumuCardModel
 {
+	private const string _exhaustReductionKey = "ExhaustReduction";
+
 	public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Ethereal];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(11, ValueProp.Move)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(11, ValueProp.Move), new IntVar(_exhaustReductionKey, 0m)];
 	protected override IEnumerable<IHoverTip> ExtraHoverTips => (new IHoverTip[1]
     {
 	 	HoverTipFactory.FromKeyword(CardKeyword.Exhaust)
@@ -32,8 +35,22 @@ public class UnexhaustedSoul : YoumuCardModel
 	public UnexhaustedSoul() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
 	{
 	}
+
+	private void RefreshExhaustReduction()
+	{
+		Player? owner = Owner;
+		if (owner == null)
+		{
+			return;
+		}
+
+		int count = PileType.Exhaust.GetPile(owner).Cards.Count;
+		base.DynamicVars[_exhaustReductionKey].BaseValue = count;
+	}
+
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{
+		RefreshExhaustReduction();
 		List<CardModel> list = PileType.Exhaust.GetPile(base.Owner).Cards.ToList();
 		int cardCount = list.Count;
 		decimal line=base.DynamicVars.Damage.BaseValue;
@@ -55,6 +72,22 @@ public class UnexhaustedSoul : YoumuCardModel
 	protected override void OnUpgrade()
 	{
 		this.DynamicVars.Damage.UpgradeValueBy(4);
+	}
+
+	public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+	{
+		RefreshExhaustReduction();
+		await Task.CompletedTask;
+	}
+
+	public override async Task AfterCardChangedPiles(CardModel card, PileType oldPileType, AbstractModel? source)
+	{
+		if (Owner != null && card.Owner == Owner)
+		{
+			RefreshExhaustReduction();
+		}
+
+		await Task.CompletedTask;
 	}
 }
 

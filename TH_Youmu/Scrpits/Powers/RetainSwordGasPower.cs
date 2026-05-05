@@ -24,8 +24,8 @@ namespace TH_Youmu.Scrpits.Powers
         public override PowerType Type => PowerType.Buff;
         public override PowerStackType StackType => PowerStackType.Counter;
         public override Color AmountLabelColor => PowerModel._normalAmountLabelColor;
-        public override string? CustomPackedIconPath => "res://TH_Youmu/ArtWorks/Powers/SSGP32.png";
-        public override string? CustomBigIconPath => "res://TH_Youmu/ArtWorks/Powers/SSGP64.png";
+        public override string? CustomPackedIconPath => "res://TH_Youmu/ArtWorks/Powers/RSGP32.png";
+        public override string? CustomBigIconPath => "res://TH_Youmu/ArtWorks/Powers/RSGP64.png";
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<SwordGasPower>()]; 
         public RetainSwordGasPower() { }
         public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)

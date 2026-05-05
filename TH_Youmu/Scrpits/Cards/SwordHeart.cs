@@ -27,14 +27,14 @@ public class SwordHeart : YoumuCardModel
 	 	HoverTipFactory.FromPower<StrengthPower>(),
 	 	HoverTipFactory.FromPower<DexterityPower>()
     });
-	
+	  protected override IEnumerable<DynamicVar> CanonicalVars => [new EnergyVar(2),new CardsVar(2)];
 	public SwordHeart() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
 	{
 	}
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{
 		await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
-		await PowerCmd.Apply<SwordHeartPower>(base.Owner.Creature,1,base.Owner.Creature,this);
+		await PowerCmd.Apply<SwordHeartPower>(base.Owner.Creature,2,base.Owner.Creature,this);
 	}
 	protected override void OnUpgrade()
 	{

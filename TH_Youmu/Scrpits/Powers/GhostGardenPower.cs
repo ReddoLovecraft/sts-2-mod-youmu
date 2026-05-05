@@ -24,7 +24,7 @@ namespace TH_Youmu.Scrpits.Powers
     public sealed class GhostGardenPower : CustomPowerModel
     {
         public override PowerType Type => PowerType.Buff;
-        public override PowerStackType StackType => PowerStackType.Single;
+        public override PowerStackType StackType => PowerStackType.Counter;
         public override Color AmountLabelColor => PowerModel._normalAmountLabelColor;
         public override string? CustomPackedIconPath => "res://TH_Youmu/ArtWorks/Powers/GGP32.png";
         public override string? CustomBigIconPath => "res://TH_Youmu/ArtWorks/Powers/GGP64.png";

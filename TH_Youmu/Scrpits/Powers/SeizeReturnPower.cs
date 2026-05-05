@@ -26,8 +26,8 @@ namespace TH_Youmu.Scrpits.Powers
         public override PowerType Type => PowerType.Buff;
         public override PowerStackType StackType => PowerStackType.Single;
         public override Color AmountLabelColor => PowerModel._normalAmountLabelColor;
-        public override string? CustomPackedIconPath => "res://TH_Youmu/ArtWorks/Powers/YP32.png";
-        public override string? CustomBigIconPath => "res://TH_Youmu/ArtWorks/Powers/YP64.png";
+        public override string? CustomPackedIconPath => "res://TH_Youmu/ArtWorks/Powers/SRP32.png";
+        public override string? CustomBigIconPath => "res://TH_Youmu/ArtWorks/Powers/SRP64.png";
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromKeyword(CardModifier.GuardKeyword)];
         
         public SeizeReturnPower() { }

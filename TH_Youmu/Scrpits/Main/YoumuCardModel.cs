@@ -42,9 +42,9 @@ namespace TH_Youmu.Scripts.Main
        		CardPile? pile = base.Pile;
 		    if (pile != null && pile.Type == PileType.Hand)
 		    {
-			await ToolBox.TriggerWhenGuard(choiceContext, target, amount, props, dealer, cardSource);
+			await CardCmd.AutoPlay(choiceContext, this, dealer);
+			await ToolBox.TriggerWhenGuard(choiceContext, target, amount, props, dealer, cardSource, this);
 			await TriggerWhenGuard(choiceContext, target, amount, props, dealer, cardSource);
-			await CardCmd.AutoPlay(choiceContext, this, dealer);  
 		    }
 		}
 	}

@@ -21,7 +21,7 @@ public class TruthEternal : YoumuCardModel
 	public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Eternal];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(9, ValueProp.Move)];
 
-	public TruthEternal() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
+	public TruthEternal() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
 	{
 	}
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

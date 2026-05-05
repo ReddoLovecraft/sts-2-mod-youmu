@@ -26,7 +26,7 @@ public class Foresight : YoumuCardModel
         Tools.GetStaticKeyword("Sword"),
 		Tools.GetStaticKeyword("Derive")
     });
-	public Foresight() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
+	public Foresight() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 	{
 	}
 	protected override bool ShouldGlowGoldInternal => base.CombatState?.HittableEnemies.Any((Creature e) => e.Monster.IntendsToAttack) ?? false;

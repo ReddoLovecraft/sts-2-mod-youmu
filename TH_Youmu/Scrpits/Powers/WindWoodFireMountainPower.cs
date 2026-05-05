@@ -40,7 +40,7 @@ namespace TH_Youmu.Scrpits.Powers
             _counter++;
              if (_counter > 4)
             {
-                _counter = 0;
+                _counter = 1;
             }
              this.Flash();
             switch (_counter)

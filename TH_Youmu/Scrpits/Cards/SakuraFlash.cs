@@ -48,7 +48,7 @@ public class SakuraFlash : YoumuCardModel
 		await PowerCmd.Apply<IntangiblePower>(Owner.Creature,amount,Owner.Creature,this);
 		await ToolBox.Cancel(choiceContext,Owner,this);
 	}
-	 public virtual async Task TriggerWhenDerive(PlayerChoiceContext choiceContext,Player player,CardType cardType,int amount,bool IsAny=false)
+	 public override async Task TriggerWhenDerive(PlayerChoiceContext choiceContext,Player player,CardType cardType,int amount,bool IsAny=false)
     {
 		for (int i = 0; i < this.DynamicVars.Cards.IntValue; i++)
 		{
