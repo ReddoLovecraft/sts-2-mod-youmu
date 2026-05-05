@@ -34,6 +34,7 @@ namespace TH_Youmu.Scrpits.Powers
 		{
 			if (cardPlay.Card.Owner == base.Owner.Player&&cardPlay.Card.Type==CardType.Attack)
 			{
+        Flash();
 				await CreatureCmd.GainBlock(Owner,new BlockVar(this.Amount,ValueProp.Unpowered),null);
 			}
 		}

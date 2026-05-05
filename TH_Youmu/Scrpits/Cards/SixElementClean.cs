@@ -31,7 +31,11 @@ public class SixElementClean : YoumuCardModel
 	}
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{
-		//TODO:播一下六根叮的音效
+		if(Owner.Character is YoumuCharacter)
+		{
+			await CreatureCmd.TriggerAnim(base.Owner.Creature, "Guard", base.Owner.Character.CastAnimDelay);
+		}
+		SfxCmd.Play(YoumuInit.ToModSfxPath("TH_Youmu/ArtWorks/SFX/guard.wav"));
 		await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(base.CombatState)
 			.WithHitFx("vfx/vfx_attack_slash", null, "blunt_attack.mp3")
 			.Execute(choiceContext);

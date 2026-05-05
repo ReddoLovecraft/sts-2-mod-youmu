@@ -63,7 +63,7 @@ namespace TH_Youmu.Scrpits.Powers
         {
             if (side == base.Owner.Side)
             {
-				if(!Owner.HasPower<RetainSwordGasPower>())
+				if(!Owner.HasPower<RetainSwordGasPower>()&&!Owner.HasPower<HalfSwordHeartPower>())
                 {
 					Flash();
                 	await PowerCmd.Remove(this);

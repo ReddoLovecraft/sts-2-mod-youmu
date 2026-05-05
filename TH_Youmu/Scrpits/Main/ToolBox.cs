@@ -13,6 +13,7 @@ using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 using TH_Youmu.Scrpits.Powers;
 
@@ -89,10 +90,15 @@ namespace TH_Youmu.Scripts.Main
 
 		public static async Task TriggerWhenGuard(PlayerChoiceContext choiceContext, Creature target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource)
 		{
-			
+			 if(target.HasPower<SeizeReturnPower>())
+			 {
+                target.GetPower<SeizeReturnPower>().ShowEffect();
+				await CardPileCmd.Add(cardSource, PileType.Hand);
+			 }
 		}
-        public static async Task Derive(PlayerChoiceContext choiceContext,Player player,CardType cardType,int amount,bool IsAny=false)
+        public static async Task<List<CardModel>> Derive(PlayerChoiceContext choiceContext,Player player,CardType cardType,int amount,bool IsAny=false)
         {
+            List<CardModel> result=new List<CardModel>();
              CardSelectorPrefs prefs = new CardSelectorPrefs(GetCustomText("static_hover_tips","derive",".selectionScreenPrompt"), amount);
               List<CardModel> cardsIn = new List<CardModel>();
             if(IsAny)
@@ -104,17 +110,37 @@ namespace TH_Youmu.Scripts.Main
                 cardsIn = PileType.Draw.GetPile(player).Cards.Where((CardModel c) => c.Type == cardType).ToList();
             }
             List<CardModel> cardModels = (await CardSelectCmd.FromSimpleGrid(choiceContext, cardsIn, player, prefs)).ToList();
+            result.AddRange(cardModels);
             if(cardModels.Count>0)
             {
                 foreach(CardModel card in cardModels)
                 {
                     await CardPileCmd.Add(card, PileType.Hand);
+                    if(player.Creature.HasPower<YoumuPower>())
+                    {
+                        player.Creature.GetPower<YoumuPower>().ShowEffect();
+                       int amt=  card.EnergyCost.GetWithModifiers(CostModifiers.Local);
+                       if(amt>0)
+                       await PlayerCmd.GainEnergy(amt,player);
+                    }
+                    if(player.Creature.HasPower<HalfHalfHalfPower>())
+                    {
+                        
+                       int cnt=player.Creature.GetPowerAmount<HalfHalfHalfPower>();
+                       for(int i=0;i<cnt;i++)
+                       {
+                            player.Creature.GetPower<HalfHalfHalfPower>().ShowEffect();
+                            await CardCmd.AutoPlay(choiceContext, card, null);
+                            await CardPileCmd.AddToCombatAndPreview<Clumsy>(player.Creature, PileType.Hand,cnt, addedByPlayer: true);
+                       }
+                    }
                     if(card is YoumuCardModel ymc)
                     {
                         await ymc.TriggerWhenDerive(choiceContext,player,cardType,amount,IsAny);
                     }
                 }
             }
+            return result;
         }
        
          public static async Task Cancel(PlayerChoiceContext choiceContext,Player player,YoumuCardModel currentCard)
@@ -126,13 +152,14 @@ namespace TH_Youmu.Scripts.Main
             }
             if (!CanCancel(currentCard,lastPlayedCard))
             {
+                SfxCmd.Play(YoumuInit.ToModSfxPath("TH_Youmu/ArtWorks/SFX/false.wav"));
                 return;
             }
             if(player.Creature.HasPower<StiffnessPower>())
             {
                 await PowerCmd.Remove(player.Creature.GetPower<StiffnessPower>());
             }
-            //TODO:可以播个取消成功音效，找一下见切音效
+            SfxCmd.Play(YoumuInit.ToModSfxPath("TH_Youmu/ArtWorks/SFX/true.wav"));
             await CardPileCmd.Add(lastPlayedCard, PileType.Hand);
             if(currentCard is YoumuCardModel ymc)
             {
@@ -159,7 +186,7 @@ namespace TH_Youmu.Scripts.Main
                    diffLevel = CancelType.Skill;
                }
            }
-            return currentLevel>diffLevel;
+            return (currentLevel>diffLevel)||currentCard.Owner.HasPower<SkyFormPower>();
         }
 
         public static async Task OpenSword(Player player,CardModel cardSource)

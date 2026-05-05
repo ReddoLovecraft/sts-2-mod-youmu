@@ -42,6 +42,7 @@ namespace TH_Youmu.Scrpits.Powers
             {
                 return;
             }
+            Flash();
             await PowerCmd.Decrement(this);
         }
     

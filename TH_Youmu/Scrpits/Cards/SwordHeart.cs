@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.ValueProps;
 using Patchoulib.Scrpits.Main;
@@ -19,29 +20,25 @@ namespace TH_Youmu.Scrpits.Cards
 [Pool(typeof(YoumuCardPool))]
 public class SwordHeart : YoumuCardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new CardsVar(3)];
-	
-	
-	protected override IEnumerable<IHoverTip> ExtraHoverTips => (new IHoverTip[1]
+    
+	protected override IEnumerable<IHoverTip> ExtraHoverTips => (new IHoverTip[3]
     {
-	 	HoverTipFactory.FromPower<StiffnessPower>()
+		base.EnergyHoverTip,
+	 	HoverTipFactory.FromPower<StrengthPower>(),
+	 	HoverTipFactory.FromPower<DexterityPower>()
     });
 	
-	public SwordHeart() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
+	public SwordHeart() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
 	{
 	}
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{
-		int muti=ShouldGlowGoldInternal?2:1;
-		await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue*muti).FromCard(this).TargetingAllOpponents(base.CombatState)
-			.WithHitFx("vfx/vfx_attack_slash")
-			.Execute(choiceContext);
-		if(!Owner.HasPower<StiffnessPower>())
-		(await PowerCmd.Apply<StiffnessPower>(Owner.Creature,3,Owner.Creature,this)).SetStiffType(StiffType.None);
+		await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
+		await PowerCmd.Apply<SwordHeartPower>(base.Owner.Creature,1,base.Owner.Creature,this);
 	}
 	protected override void OnUpgrade()
 	{
-		this.DynamicVars.Damage.UpgradeValueBy(3);
+		this.EnergyCost.UpgradeBy(-1);
 	}
 }
 

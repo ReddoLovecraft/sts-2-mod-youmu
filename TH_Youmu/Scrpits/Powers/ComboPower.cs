@@ -12,6 +12,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
+using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.ValueProps;
 using System.Reflection;
@@ -201,6 +202,27 @@ namespace TH_Youmu.Scrpits.Powers
                 await PowerCmd.ModifyAmount(this,1,null,null);
                 if(cardPlay.Card.Type!=lastCardType)
                 {
+                    if(Owner.HasPower<BizarreSixRealmsPower>())
+                    {
+                        BizarreSixRealmsPower power=Owner.GetPower<BizarreSixRealmsPower>();
+                        int amt=Owner.GetPowerAmount<BizarreSixRealmsPower>();
+                        if(lastCardType==CardType.Attack)
+                        {
+                           power.ShowEffect();
+                           await PowerCmd.Apply<StrengthPower>(Owner,amt,Owner,null);
+                        }
+                        else if(lastCardType==CardType.Skill)
+                        {
+                            power.ShowEffect();
+                            await PowerCmd.Apply<DexterityPower>(Owner,amt,Owner,null);
+                        }
+                        else if(lastCardType==CardType.Power)
+                        {
+                            power.ShowEffect();
+                            await PlayerCmd.GainEnergy(amt,Owner.Player);
+                            await CardPileCmd.Draw(context,amt,Owner.Player);
+                        }
+                    }
                     if(!Owner.HasPower<StiffnessPower>()&&this.Amount>=2)
                     (await PowerCmd.Apply<StiffnessPower>(Owner,this.Amount,null,null)).SetStiffType(Scripts.Main.StiffType.None);
                     await ResetCounter();
@@ -233,8 +255,12 @@ namespace TH_Youmu.Scrpits.Powers
 		    {
 			    return 1m;
 		    }
-            //其他power逻辑占位
-            decimal finalValue=(1-this.Amount*0.1m);
+            decimal addtion=0;
+            if(Owner.HasPower<StillWaterPower>())
+            {
+                addtion=+Owner.GetPowerAmount<StillWaterPower>()/10;
+            }
+            decimal finalValue=(1+(addtion-0.1m)*this.Amount);
 		    return (finalValue>0?finalValue:0);
 	    }
     }
