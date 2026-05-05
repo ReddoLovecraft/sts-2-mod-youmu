@@ -40,7 +40,7 @@ public class IntentSeen : YoumuCardModel
 		}
 		else
 		{	await PowerCmd.Apply<VulnerablePower>(cardPlay.Target,this.DynamicVars.Cards.IntValue,cardPlay.Target,this);
-			await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(base.CombatState)
+			await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
 				.WithHitFx("vfx/vfx_attack_slash")
 				.Execute(choiceContext);
 		}

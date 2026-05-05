@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\10868\\Documents\\sts-2-mod-youmu\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{D7A7A5A5-EC55-417B-9255-145348898C1F}|Sts2ModYoumu.csproj|c:\\users\\10868\\documents\\sts-2-mod-youmu\\th_youmu\\scrpits\\cards\\athoughtcountlesskalpas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7A7A5A5-EC55-417B-9255-145348898C1F}|Sts2ModYoumu.csproj|solutionrelative:th_youmu\\scrpits\\cards\\athoughtcountlesskalpas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D7A7A5A5-EC55-417B-9255-145348898C1F}|Sts2ModYoumu.csproj|c:\\users\\10868\\documents\\sts-2-mod-youmu\\th_youmu\\scrpits\\main\\youmucharacter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7A7A5A5-EC55-417B-9255-145348898C1F}|Sts2ModYoumu.csproj|solutionrelative:th_youmu\\scrpits\\main\\youmucharacter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\10868\\Documents\\sts-2-mod-youmu\\TH_Youmu.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TH_Youmu.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
@@ -19,6 +27,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "AThoughtCountlessKalpas.cs",
+              "DocumentMoniker": "C:\\Users\\10868\\Documents\\sts-2-mod-youmu\\TH_Youmu\\Scrpits\\Cards\\AThoughtCountlessKalpas.cs",
+              "RelativeDocumentMoniker": "TH_Youmu\\Scrpits\\Cards\\AThoughtCountlessKalpas.cs",
+              "ToolTip": "C:\\Users\\10868\\Documents\\sts-2-mod-youmu\\TH_Youmu\\Scrpits\\Cards\\AThoughtCountlessKalpas.cs",
+              "RelativeToolTip": "TH_Youmu\\Scrpits\\Cards\\AThoughtCountlessKalpas.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAuwC0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-05T12:25:53.08Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "YoumuCharacter.cs",
+              "DocumentMoniker": "C:\\Users\\10868\\Documents\\sts-2-mod-youmu\\TH_Youmu\\Scrpits\\Main\\YoumuCharacter.cs",
+              "RelativeDocumentMoniker": "TH_Youmu\\Scrpits\\Main\\YoumuCharacter.cs",
+              "ToolTip": "C:\\Users\\10868\\Documents\\sts-2-mod-youmu\\TH_Youmu\\Scrpits\\Main\\YoumuCharacter.cs",
+              "RelativeToolTip": "TH_Youmu\\Scrpits\\Main\\YoumuCharacter.cs",
+              "ViewState": "AgIAAGYAAAAAAAAAAAAAAHIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-05T06:38:29.735Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "TH_Youmu.json",
               "DocumentMoniker": "C:\\Users\\10868\\Documents\\sts-2-mod-youmu\\TH_Youmu.json",
               "RelativeDocumentMoniker": "TH_Youmu.json",

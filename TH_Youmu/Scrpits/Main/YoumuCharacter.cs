@@ -23,7 +23,7 @@ namespace TH_Youmu.Scripts.Main
 		public override Color RemoteTargetingLineColor => new Color("01b78fff");
 		public override Color RemoteTargetingLineOutline => new Color("028f71ff");
 		public override CharacterGender Gender => CharacterGender.Feminine;
-		public override int StartingHp => 71;
+		public override int StartingHp => 69;
 		public override string CustomVisualPath => "res://TH_Youmu/ArtWorks/Character/youmu.tscn";
 		public override string CustomTrailPath => "res://TH_Youmu/ArtWorks/VFX/YoumuCardTrail.tscn";
 		public override string CustomIconTexturePath => "res://TH_Youmu/ArtWorks/Character/youmu_icon.png";

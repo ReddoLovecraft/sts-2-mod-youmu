@@ -200,7 +200,7 @@
 	"TH_YOUMU-INDIFFERENT_SENTIENT_BEINGS.description": "每有一名玩家存活，就任意[gold]派生[/gold]1。",
 	"TH_YOUMU-CUT_SOUL_SWORD.title": "断灵剑「成佛得脱斩」",
 	"TH_YOUMU-CUT_SOUL_SWORD.description": "对一名玩家造成{Damage:diff()}点伤害。\n[gold]消耗[/gold]该玩家的所有[purple]诅咒[/purple]和[red]状态牌[/red]，每[gold]消耗[/gold]一张就使得你和该玩家获得抽1张牌并将造成的伤害提高1点。\n移除该玩家身上的所有负面效果，每移除一种就使其你和该玩家获得{Energy:energyIcons()}并将造成的伤害翻1倍。",
-	"TH_YOUMU-DIRECT.title": "开门见山",
+	"TH_YOUMU-DIRECT.title": "满溢春光",
 	"TH_YOUMU-DIRECT.description": "给予所有敌人{Cards:diff()}层[gold]虚弱[/gold]和[gold]易伤[/gold]。",
 	"TH_YOUMU-SEVEN_SOULS_TABOOS.title": "天界剑「七魄忌讳」",
 	"TH_YOUMU-SEVEN_SOULS_TABOOS.description": "造成{Damage:diff()}点伤害。\n敌人每有一种负面效果，就获得{Energy:energyIcons()}并抽{Cards:diff()}张牌。",

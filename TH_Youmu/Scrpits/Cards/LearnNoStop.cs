@@ -56,7 +56,7 @@ public class LearnNoStop : YoumuCardModel
 			_increasedCard = value;
 		}
 	}
-	public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust,CardKeyword.Innate];
+	public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust,CardKeyword.Innate,CardKeyword.Eternal];
 	public LearnNoStop() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
 	{
 	}
