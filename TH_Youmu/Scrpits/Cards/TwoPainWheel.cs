@@ -22,6 +22,7 @@ namespace TH_Youmu.Scrpits.Cards
 [Pool(typeof(YoumuCardPool))]
 public class TwoPainWheel : YoumuCardModel
 {
+	
 		protected override IEnumerable<IHoverTip> ExtraHoverTips => (new IHoverTip[1]
     {
 	 	HoverTipFactory.Static(StaticHoverTip.ReplayStatic)

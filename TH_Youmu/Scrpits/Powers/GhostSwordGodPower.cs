@@ -20,16 +20,16 @@ using Patchoulib.Scrpits.Main;
 
 namespace TH_Youmu.Scrpits.Powers
 {
-    public sealed class GhostSwordGod : CustomPowerModel
+    public sealed class GhostSwordGodPower : CustomPowerModel
     {
         public override PowerType Type => PowerType.Buff;
         public override PowerStackType StackType => PowerStackType.Counter;
         public override Color AmountLabelColor => PowerModel._normalAmountLabelColor;
-        public override string? CustomPackedIconPath => "res://TH_Youmu/ArtWorks/Powers/GSG32.png";
-        public override string? CustomBigIconPath => "res://TH_Youmu/ArtWorks/Powers/GSG64.png";
+        public override string? CustomPackedIconPath => "res://TH_Youmu/ArtWorks/Powers/GSGP32.png";
+        public override string? CustomBigIconPath => "res://TH_Youmu/ArtWorks/Powers/GSGP64.png";
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromKeyword(CardKeyword.Ethereal)];
         
-        public GhostSwordGod() { }
+        public GhostSwordGodPower() { }
         public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource)
 	{
 		if (!props.IsPoweredAttack())

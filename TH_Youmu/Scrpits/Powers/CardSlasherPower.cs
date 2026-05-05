@@ -21,7 +21,7 @@ using Patchoulib.Scrpits.Main;
 
 namespace TH_Youmu.Scrpits.Powers
 {
-    public sealed class CardSlasher : CustomPowerModel
+    public sealed class CardSlasherPower : CustomPowerModel
     {
         public override PowerType Type => PowerType.Buff;
         public override PowerStackType StackType => PowerStackType.Counter;
@@ -29,15 +29,15 @@ namespace TH_Youmu.Scrpits.Powers
         public override string? CustomPackedIconPath => "res://TH_Youmu/ArtWorks/Powers/CSP32.png";
         public override string? CustomBigIconPath => "res://TH_Youmu/ArtWorks/Powers/CSP64.png";
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.ForEnergy(this),HoverTipFactory.FromKeyword(CardKeyword.Exhaust)];
-        
-        public CardSlasher() { }
+         protected override IEnumerable<DynamicVar> CanonicalVars => [new EnergyVar(1)];
+        public CardSlasherPower() { }
           public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
         {
             if (player != base.Owner.Player)
             {
                 return;
             }
-			foreach (CardModel item in await CardSelectCmd.FromHand(prefs: new CardSelectorPrefs(base.SelectionScreenPrompt, 0, Amount), context: choiceContext, player: base.Owner.Player, filter: null, source: this))
+			foreach (CardModel item in await CardSelectCmd.FromHand(prefs: new CardSelectorPrefs(base.SelectionScreenPrompt,  Amount), context: choiceContext, player: base.Owner.Player, filter: null, source: this))
             {
                 await CardCmd.Exhaust(choiceContext, item);
             }

@@ -25,8 +25,8 @@ namespace TH_Youmu.Scrpits.Powers
         public override PowerType Type => PowerType.Buff;
         public override PowerStackType StackType => PowerStackType.Counter;
         public override Color AmountLabelColor => PowerModel._normalAmountLabelColor;
-        public override string? CustomPackedIconPath => "res://TH_Youmu/ArtWorks/Powers/SHP32.png";
-        public override string? CustomBigIconPath => "res://TH_Youmu/ArtWorks/Powers/SHP64.png";
+        public override string? CustomPackedIconPath => "res://TH_Youmu/ArtWorks/Powers/SHP232.png";
+        public override string? CustomBigIconPath => "res://TH_Youmu/ArtWorks/Powers/SHP264.png";
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.Static(StaticHoverTip.Block)]; 
         public SmartHalfPower() { }
         public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)

@@ -145,7 +145,7 @@
 	"TH_YOUMU-UNEXHAUSTED_SOUL.description": "造成{Damage:diff()}点伤害，这张牌造成的伤害降低你[gold]消耗牌堆[/gold]中的牌数点。\n如果造成的伤害不低于这张牌的基础值，从[gold]消耗牌堆[/gold]中选择一张牌放回你的手中。",
 	"TH_YOUMU-UNEXHAUSTED_SOUL.selectionScreenPrompt": "选择一张牌放回手中。",
 	"TH_YOUMU-CARD_SLASHER.title": "卡牌斩断者",
-	"TH_YOUMU-CARD_SLASHER.description": "在你的回合开始时，额外获得{Energy:energyIcons()}，然后选择至多1张牌[gold]消耗[/gold]。",
+	"TH_YOUMU-CARD_SLASHER.description": "在你的回合开始时，额外获得{Energy:energyIcons()}，然后选择1张牌[gold]消耗[/gold]。",
 	"TH_YOUMU-HALF_SWORD_SHARP.title": "半身剑锋",
 	"TH_YOUMU-HALF_SWORD_SHARP.description": "在你的回合开始时，获得{Cards:diff()}层[gold]剑气[/gold]。",
 	"TH_YOUMU-HALF_SWORD_HEART.title": "半身剑胆",

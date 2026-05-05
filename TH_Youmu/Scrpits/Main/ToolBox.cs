@@ -155,6 +155,13 @@ namespace TH_Youmu.Scripts.Main
                 SfxCmd.Play(YoumuInit.ToModSfxPath("TH_Youmu/ArtWorks/SFX/false.wav"));
                 return;
             }
+            if(player.Creature.HasPower<SkyFormPower>())
+            {
+                player.Creature.GetPower<SkyFormPower>().ShowEffect();
+                int cost=lastPlayedCard.EnergyCost.GetWithModifiers(CostModifiers.Local);
+                if(cost>0)
+                    await PlayerCmd.GainEnergy(cost,player);
+            }
             if(player.Creature.HasPower<StiffnessPower>())
             {
                 await PowerCmd.Remove(player.Creature.GetPower<StiffnessPower>());
