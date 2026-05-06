@@ -21,9 +21,10 @@ namespace TH_Youmu.Scrpits.Cards
 public class GasBladeThrust : YoumuCardModel
 {
    
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(12, ValueProp.Move)];
-	protected override IEnumerable<IHoverTip> ExtraHoverTips => (new IHoverTip[2]
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(10, ValueProp.Move),new CardsVar(2)];
+		protected override IEnumerable<IHoverTip> ExtraHoverTips => (new IHoverTip[3]
     {
+		HoverTipFactory.FromPower<SwordGasPower>(),
 		HoverTipFactory.FromCard<HorizontalSlash>(base.IsUpgraded),
 		Tools.GetStaticKeyword("Derive")
     });
@@ -33,10 +34,11 @@ public class GasBladeThrust : YoumuCardModel
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{
 		SfxCmd.Play("event:/sfx/characters/ironclad/ironclad_whirlwind");
-			await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).WithHitCount(1).FromCard(this)
+		await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).WithHitCount(1).FromCard(this)
 			.Targeting(cardPlay.Target)
 			.WithHitVfxNode((Creature t) => NStabVfx.Create(t, facingEnemies: true, VfxColor.Red))
 			.Execute(choiceContext);
+		await PowerCmd.Apply<SwordGasPower>(Owner.Creature,this.DynamicVars.Cards.IntValue,Owner.Creature,this);
 		CardModel dl = base.CombatState.CreateCard<HorizontalSlash>(base.Owner);
 		if(base.IsUpgraded)
 		{
@@ -48,6 +50,7 @@ public class GasBladeThrust : YoumuCardModel
 	protected override void OnUpgrade()
 	{
 		DynamicVars.Damage.UpgradeValueBy(3); 
+		DynamicVars.Cards.UpgradeValueBy(1);
 	}
 }
 

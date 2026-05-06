@@ -21,6 +21,11 @@ public class FutureAlwaysSlash : YoumuCardModel
 {
    
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(7, ValueProp.Move)];
+	protected override IEnumerable<IHoverTip> ExtraHoverTips => (new IHoverTip[1]
+    {
+	 	Tools.GetStaticKeyword("Cancel")  
+    });
+	public override CancelType CancelLevel=>CancelType.SpellCard;
 	public FutureAlwaysSlash() : base(5, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
 	{
 	}
@@ -41,6 +46,7 @@ public class FutureAlwaysSlash : YoumuCardModel
 			VfxCmd.PlayOnCreature(enemy, "vfx/vfx_attack_slash");
 			}	
 		}
+		await ToolBox.Cancel(choiceContext,Owner,this);
 	}
 	public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
 	{
@@ -52,7 +58,7 @@ public class FutureAlwaysSlash : YoumuCardModel
 	}
 	protected override void OnUpgrade()
 	{
-		DynamicVars.Damage.UpgradeValueBy(4); 
+		DynamicVars.Damage.UpgradeValueBy(2); 
 	}
 }
 

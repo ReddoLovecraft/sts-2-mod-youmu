@@ -47,15 +47,29 @@ namespace TH_Youmu.Scrpits.Powers
 		    }
 		    return base.Amount;
 	    }
-        public override async Task BeforeDamageReceived(PlayerChoiceContext choiceContext, Creature target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource)
-	    {
-		    if (target == base.Owner&&amount>0)
-		    {
-               this.Flash();
-               NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NGroundFireVfx.Create(base.Owner, VfxColor.Red));
-               await PowerCmd.ModifyAmount(this,1,null,null);
-		    }
-	    }
+		public override async Task AfterDamageReceived(PlayerChoiceContext choiceContext, Creature target, DamageResult result, ValueProp props, Creature? dealer, CardModel? cardSource)
+	{
+		if (!CombatManager.Instance.IsInProgress)
+		{
+			await Task.CompletedTask;
+			return;
+		}
+		if (target != base.Owner)
+		{
+			await Task.CompletedTask;
+			return;
+		}
+		if (result.UnblockedDamage<=0)
+		{
+			await Task.CompletedTask;
+			return;
+		}
+        Flash();
+		this.Flash();
+        NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NGroundFireVfx.Create(base.Owner, VfxColor.Green));
+        await PowerCmd.ModifyAmount(this,1,null,null);
+        await Task.CompletedTask;
+	}
     }
 
 }

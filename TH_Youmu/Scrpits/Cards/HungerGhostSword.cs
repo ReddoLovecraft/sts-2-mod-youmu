@@ -41,8 +41,8 @@ public class HungerGhostSword : YoumuCardModel
 		if (cardModel != null)
 		{
 			await CardCmd.Exhaust(choiceContext, cardModel);
+			await ToolBox.Derive(choiceContext,Owner,cardModel.Type,base.DynamicVars.Cards.IntValue,cardModel.Type==CardType.Status||cardModel.Type==CardType.Curse);
 		}
-		await ToolBox.Derive(choiceContext,Owner,cardModel.Type,base.DynamicVars.Cards.IntValue,cardModel.Type==CardType.Status||cardModel.Type==CardType.Curse);
 	}
 	protected override void OnUpgrade()
 	{

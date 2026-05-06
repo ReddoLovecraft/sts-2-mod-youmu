@@ -17,7 +17,7 @@ namespace TH_Youmu.Scrpits.Cards
 [Pool(typeof(YoumuCardPool))]
 public class Foresight : YoumuCardModel
 {
-   
+     protected override bool IsPlayable => Owner.Creature.HasPower<SwordGasPower>();
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(9, ValueProp.Move)];
 	protected override IEnumerable<IHoverTip> ExtraHoverTips => (new IHoverTip[4]
     {

@@ -12,7 +12,7 @@ namespace TH_Youmu.Scrpits.Cards
 [Pool(typeof(YoumuCardPool))]
 public sealed class BondOfAttachment : YoumuCardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => new List<DynamicVar> { new CardsVar(1),new DynamicVar("Power",1)};
+    protected override IEnumerable<DynamicVar> CanonicalVars => new List<DynamicVar> { new CardsVar(2),new DynamicVar("Power",1)};
     protected override IEnumerable<IHoverTip> ExtraHoverTips => (new IHoverTip[2]
         {
           HoverTipFactory.FromPower<VulnerablePower>(),
@@ -20,7 +20,7 @@ public sealed class BondOfAttachment : YoumuCardModel
         });
 
     public BondOfAttachment()
-        : base(0, CardType.Skill, CardRarity.Common, TargetType.AllEnemies)
+        : base(1, CardType.Skill, CardRarity.Common, TargetType.AllEnemies)
     {
     }
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
