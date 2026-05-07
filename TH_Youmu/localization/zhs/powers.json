@@ -6,7 +6,7 @@
   "TH_YOUMU-STIFFNESS_POWER.description": "本回合内下[blue]1[/blue]张牌不能打出[gold]攻击牌[/gold]，打出其他卡牌时将层数减少[blue]1[/blue]层。",
   "TH_YOUMU-STIFFNESS_POWER.smartDescription": "本回合内下[blue]{Amount}[/blue]张牌不能打出[gold]攻击牌[/gold]，打出其他卡牌时将层数减少[blue]1[/blue]层。\n当前[gold]硬直[/gold]等级为：{Type}。",
   "TH_YOUMU-COMBO_POWER.title": "连段",
-  "TH_YOUMU-COMBO_POWER.description": "打出卡牌时，本回合内将打出的下一张同类型的卡牌的耗能减少[blue]1[/blue]点，但造成的伤害也减少[blue]10%[/blue]。\n打出同类型的卡牌时，将层数提高[blue]1[/blue]层，打出其他类型的卡牌时重置层数，并获得等量层[gold]普通等级硬直[/gold](少于[blue]2[/blue]层时不获得)。",
+  "TH_YOUMU-COMBO_POWER.description": "打出卡牌时，本回合内将打出的下一张同类型的卡牌的耗能减少[blue]1[/blue]点，但造成的伤害也减少[blue]10%[/blue]。\n打出同类型的卡牌时，将层数提高[blue]1[/blue]层，打出其他类型的卡牌时重置层数，并获得等量层[gold]普通等级硬直[/gold](高于[blue]1[/blue]层时才获得)。",
   "TH_YOUMU-COMBO_POWER.smartDescription": "打出卡牌时，本回合内将打出的下一张同类型的卡牌的耗能减少[blue]{Amount}[/blue]点，但造成的伤害也减少[blue]{Amount}0%[/blue]。\n打出同类型的卡牌时，将层数提高[blue]1[/blue]层，打出其他类型的卡牌时重置层数，并获得[blue]{Amount}[/blue]层[gold]普通等级硬直[/gold](少于[blue]2[/blue]层时不获得)。\n上一张打出的卡牌类型为：{Type}。",
   "TH_YOUMU-WHITE_SWORD_POWER.title": "白刃",
   "TH_YOUMU-WHITE_SWORD_POWER.description": "造成的伤害增加[blue]25%[/blue]，剩余[blue]{Amount}[/blue]回合。",
