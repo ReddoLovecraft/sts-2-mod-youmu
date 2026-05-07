@@ -8,9 +8,11 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.ValueProps;
 using Patchouib.Scrpits.Main;
+using TH_Youmu.Relics;
 using TH_Youmu.Scrpits.Cards;
 using TH_Youmu.Scrpits.Powers;
 
@@ -42,6 +44,10 @@ namespace TH_Youmu.Scripts.Main
        		CardPile? pile = base.Pile;
 		    if (pile != null && pile.Type == PileType.Hand)
 		    {
+			if(Owner.GetRelic<Mirror>()!=null)
+			{
+				await PowerCmd.Apply<BufferPower>(Owner.Creature,1,Owner.Creature,null);
+			}
 			await CardCmd.AutoPlay(choiceContext, this, dealer);
 			await ToolBox.TriggerWhenGuard(choiceContext, target, amount, props, dealer, cardSource, this);
 			await TriggerWhenGuard(choiceContext, target, amount, props, dealer, cardSource);

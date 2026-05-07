@@ -166,7 +166,7 @@ namespace TH_Youmu.Scripts.Main
             {
                 return;
             }
-            if (!CanCancel(currentCard,lastPlayedCard))
+            if (!CanCancel(currentCard,lastPlayedCard)&&!currentCard.Owner.HasPower<SkyFormPower>())
             {
                 SfxCmd.Play(YoumuInit.ToModSfxPath("TH_Youmu/ArtWorks/SFX/false.wav"));
                 return;
@@ -183,7 +183,12 @@ namespace TH_Youmu.Scripts.Main
                 await PowerCmd.Remove(player.Creature.GetPower<StiffnessPower>());
             }
             SfxCmd.Play(YoumuInit.ToModSfxPath("TH_Youmu/ArtWorks/SFX/true.mp3"));
-            await CardPileCmd.Add(lastPlayedCard, PileType.Hand);
+            if(player.Creature.HasPower<SkyFormPower>()&&!CanCancel(currentCard,lastPlayedCard))
+            {
+                await CardPileCmd.Add(lastPlayedCard, PileType.Draw,CardPilePosition.Top);
+            }
+            else
+                await CardPileCmd.Add(lastPlayedCard, PileType.Hand);
             if(currentCard is YoumuCardModel ymc)
             {
                 await ymc.TriggerWhenCancel(choiceContext,player,currentCard);
@@ -209,7 +214,7 @@ namespace TH_Youmu.Scripts.Main
                    diffLevel = CancelType.Skill;
                }
            }
-            return (currentLevel>diffLevel)||currentCard.Owner.HasPower<SkyFormPower>();
+            return (currentLevel>diffLevel);
         }
 
         public static async Task OpenSword(Player player,CardModel cardSource)

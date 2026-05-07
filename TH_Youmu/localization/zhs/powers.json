@@ -100,8 +100,8 @@
   "TH_YOUMU-HALF_ETHERAL_GARDEN_POWER.description": "带有[gold]虚无[/gold]的卡牌可以被免费打出。\n打出卡牌时，如果这张牌没有[gold]虚无[/gold]，则使其获得[gold]虚无[/gold]。",
   "TH_YOUMU-HALF_ETHERAL_GARDEN_POWER.smartDescription": "带有[gold]虚无[/gold]的卡牌可以被免费打出。\n打出卡牌时，如果这张牌没有[gold]虚无[/gold]，则使其获得[gold]虚无[/gold]。",
   "TH_YOUMU-SKY_FORM_POWER.title": "苍天形态",
-  "TH_YOUMU-SKY_FORM_POWER.description": "现在你的[gold]取消[/gold]将无视[gold]取消[/gold]等级直接成功。\n每当你[gold]取消[/gold]时，获得等同于被[gold]取消[/gold]的那张牌的耗能的能量并重置[gold]连段[/gold]层数。",
-  "TH_YOUMU-SKY_FORM_POWER.smartDescription": "现在你的[gold]取消[/gold]将无视[gold]取消[/gold]等级直接成功。\n每当你[gold]取消[/gold]时，获得等同于被[gold]取消[/gold]的那张牌的耗能的{Amount:energyIcons()}并重置[gold]连段[/gold]层数。",
+  "TH_YOUMU-SKY_FORM_POWER.description": "现在你的[gold]取消[/gold]将无视[gold]取消等级[/gold]直接成功，但若被[gold]取消[/gold]的卡牌的[gold]取消等级[/gold]不低于[gold]取消[/gold]的卡牌，将其置入你的[gold]抽牌堆[/gold]顶部。\n每当你[gold]取消[/gold]时，获得等同于被[gold]取消[/gold]的那张牌的耗能的{Energy:energyIcons()}并重置[gold]连段[/gold]层数。",
+  "TH_YOUMU-SKY_FORM_POWER.smartDescription": "现在你的[gold]取消[/gold]将无视[gold]取消等级[/gold]直接成功，但若被[gold]取消[/gold]的卡牌的[gold]取消等级[/gold]不低于[gold]取消[/gold]的卡牌，将其置入你的[gold]抽牌堆[/gold]顶部。\n每当你[gold]取消[/gold]时，获得等同于被[gold]取消[/gold]的那张牌的耗能的{Amount:energyIcons()}并重置[gold]连段[/gold]层数。",
   "TH_YOUMU-SHOT_BIRD_EVENT_POWER.title": "广有射鸟怪事",
   "TH_YOUMU-SHOT_BIRD_EVENT_POWER.description": "在你的回合开始时，将层数张随机[gold]攻击牌[/gold]放入所有玩家的手中，且本回合内首次打出前耗能为0。",
   "TH_YOUMU-SHOT_BIRD_EVENT_POWER.smartDescription": "在你的回合开始时，将[blue]{Amount}[/blue]张随机[gold]攻击牌[/gold]放入所有玩家的手中，且本回合内首次打出前耗能为0。"

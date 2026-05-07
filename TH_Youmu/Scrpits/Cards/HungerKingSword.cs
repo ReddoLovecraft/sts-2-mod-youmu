@@ -51,6 +51,11 @@ public class HungerKingSword : YoumuCardModel
 	}
 	public override async Task AfterCardChangedPiles(CardModel card, PileType oldPileType, AbstractModel? source)
 	{
+		if (!IsInCombat)
+		{
+			await Task.CompletedTask;
+			return;
+		}
 		if (card == this)
 		{
 			await Task.CompletedTask;
@@ -87,13 +92,6 @@ public class HungerKingSword : YoumuCardModel
 			await Task.CompletedTask;
 			return;
 		}
-
-		if (myPile != null && myPile.Type == PileType.Exhaust)
-		{
-			await Task.CompletedTask;
-			return;
-		}
-
 		await CardPileCmd.Add(this, PileType.Hand);
 	}
 }

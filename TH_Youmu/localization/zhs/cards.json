@@ -63,7 +63,7 @@
 	"TH_YOUMU-CUT_DREAM_SWORD.title": "断想剑「草木成佛斩」",
 	"TH_YOUMU-CUT_DREAM_SWORD.description": "造成{Damage:diff()}点伤害，[gold]消耗[/gold]你手中的所有非[gold]攻击牌[/gold]，每[gold]消耗[/gold]一张就将这张牌造成的伤害提高{Cards:diff()}点。",
 	"TH_YOUMU-SKY_FORM.title": "苍天形态",
-	"TH_YOUMU-SKY_FORM.description": "现在你的[gold]取消[/gold]将无视[gold]取消等级[/gold]直接成功。\n每当你[gold]取消[/gold]时，获得等同于被[gold]取消[/gold]的那张牌的耗能的{Energy:energyIcons()}并重置[gold]连段[/gold]层数。",
+	"TH_YOUMU-SKY_FORM.description": "现在你的[gold]取消[/gold]将无视[gold]取消等级[/gold]直接成功，但若被[gold]取消[/gold]的卡牌的[gold]取消等级[/gold]不低于[gold]取消[/gold]的卡牌，将其置入你的[gold]抽牌堆[/gold]顶部。\n每当你[gold]取消[/gold]时，获得等同于被[gold]取消[/gold]的那张牌的耗能的{Energy:energyIcons()}并重置[gold]连段[/gold]层数。",
 	"TH_YOUMU-LOSE_MY_MEAT.title": "舍吾皮肉",
 	"TH_YOUMU-LOSE_MY_MEAT.description": "失去10点生命。\n将一张[gold]断汝筋骨{IfUpgraded:show:+|}[/gold]置入手中。",
 	"TH_YOUMU-SLASH_YOUR_BONE.title": "断汝筋骨",

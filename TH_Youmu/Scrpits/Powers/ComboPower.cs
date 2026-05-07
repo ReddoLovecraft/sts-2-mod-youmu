@@ -16,6 +16,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.ValueProps;
 using System.Reflection;
+using TH_Youmu.Relics;
 
 
 
@@ -222,8 +223,23 @@ namespace TH_Youmu.Scrpits.Powers
                             await CardPileCmd.Draw(context,amt,Owner.Player);
                         }
                     }
-                    if(!Owner.HasPower<StiffnessPower>()&&this.Amount>=2)
-                    (await PowerCmd.Apply<StiffnessPower>(Owner,this.Amount,null,null)).SetStiffType(Scripts.Main.StiffType.None);
+                    if(!Owner.HasPower<StiffnessPower>())
+                    {
+                        if(Owner.Player.GetRelic<BlackSock>()!=null)
+                        {
+                            if(this.Amount>2)
+                            {
+                                (await PowerCmd.Apply<StiffnessPower>(Owner,this.Amount,null,null)).SetStiffType(Scripts.Main.StiffType.None);
+                            }
+                        }
+                        else
+                        {
+                            if(this.Amount>1)
+                            {
+                                (await PowerCmd.Apply<StiffnessPower>(Owner,this.Amount,null,null)).SetStiffType(Scripts.Main.StiffType.None);
+                            }
+                        }
+                    }
                     await ResetCounter();
                 }
                 await PowerCmd.ModifyAmount(this,1,null,null);
