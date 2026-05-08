@@ -15,6 +15,7 @@ using Patchouib.Scrpits.Main;
 using TH_Youmu.Relics;
 using TH_Youmu.Scrpits.Cards;
 using TH_Youmu.Scrpits.Powers;
+using TH_Youmu.Scrpits.Multiplayer;
 
 
 
@@ -73,16 +74,10 @@ namespace TH_Youmu.Scripts.Main
 		{
 			return;
 		}
-		int value=0;
-		if(Owner.HasPower<SwordGasPower>())
+		int value = Owner.Creature.GetPowerAmount<SwordGasPower>();
+		if (this.DynamicVars.Damage != null && value > 0)
 		{
-			value=Owner.Creature.GetPowerAmount<SwordGasPower>();
-		}
-		if(this.DynamicVars.Damage!=null&&value>0)
-		{
-			await PowerCmd.Remove(Owner.Creature.GetPower<SwordGasPower>());
-			this.DynamicVars.Damage.UpgradeValueBy(value);
-			CardCmd.Preview(this);
+			await SwordGasRightClickSync.DoLocalAndSync(Owner, this, value);
 		}
     }
 
