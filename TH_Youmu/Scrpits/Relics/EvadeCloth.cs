@@ -31,21 +31,36 @@ public class EvadeCloth : CustomRelicModel
     protected override string PackedIconOutlinePath => $"res://TH_Youmu/ArtWorks/Relics/Outlines/{Id.Entry}.png";
     protected override string BigIconPath => $"res://TH_Youmu/ArtWorks/Relics/{Id.Entry}.png";
     public override RelicRarity Rarity => RelicRarity.Common;
-    public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource)
+	private bool flag=false;
+	public override decimal ModifyHpLostAfterOsty(Creature target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource)
 	{
-		if (target == base.Owner.Creature)
+		if (target != base.Owner.Creature)
 		{
-			return 1m;
+			return  amount;
 		}
 		Rng rng = Owner.RunState.Rng.CombatCardGeneration;
 		int result = rng.NextInt(1,101);
 		if (result <= 30)
 		{
-			Flash();
+			flag=true;
 			return 0m;
 		}
-		return 1m;
+		flag=false;
+		return  amount;
 	}
+		public override async Task AfterDamageReceived(PlayerChoiceContext choiceContext, Creature target, DamageResult result, ValueProp props, Creature? dealer, CardModel? cardSource)
+		{
+			if (target != base.Owner.Creature)
+			{
+				return;
+			}
+			if (!flag)
+			{
+				return;
+			}
+			flag=false;
+		    this.Flash();
+		}
 
 }
 }

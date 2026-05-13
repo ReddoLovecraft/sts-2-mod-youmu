@@ -33,7 +33,8 @@ public class LoseMyMeat : YoumuCardModel
 		await CreatureCmd.Damage(choiceContext, base.Owner.Creature, 10, ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this);
 		List<CardModel> list =new List<CardModel>();
     	list.Add(base.CombatState.CreateCard<SlashYourBone>(Owner));
-		CardCmd.Upgrade(list[0]);
+		if(base.IsUpgraded)
+			CardCmd.Upgrade(list[0]);
 		await CardPileCmd.AddGeneratedCardsToCombat(list, PileType.Hand, addedByPlayer: true);
 	}
 	protected override void OnUpgrade()
