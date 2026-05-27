@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bhnafu0ui0xx6"]
+[gd_scene load_steps=3 format=3]
 
-[ext_resource type="Script" uid="uid://dmf1hvbda4ftu" path="res://TH_Youmu/ArtWorks/VFX/Youmurest.cs" id="1_rfjk2"]
-[ext_resource type="SpineSkeletonDataResource" uid="uid://b68lygyuwgesm" path="res://TH_Youmu/ArtWorks/Character/youmu.tres" id="2_ahef8"]
+[ext_resource type="Script" path="res://TH_Youmu/ArtWorks/VFX/Youmurest.cs" id="1_rfjk2"]
+[ext_resource type="SpineSkeletonDataResource" path="res://TH_Youmu/ArtWorks/Character/youmu.tres" id="2_ahef8"]
 
 [node name="sakuyarest" type="Node2D"]
 script = ExtResource("1_rfjk2")

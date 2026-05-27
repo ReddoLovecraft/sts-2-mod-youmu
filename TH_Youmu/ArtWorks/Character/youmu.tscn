@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://b7oe5xuur378"]
+[gd_scene load_steps=2 format=3]
 
-[ext_resource type="SpineSkeletonDataResource" uid="uid://b68lygyuwgesm" path="res://TH_Youmu/ArtWorks/Character/youmu.tres" id="1_03h26"]
+[ext_resource type="SpineSkeletonDataResource" path="res://TH_Youmu/ArtWorks/Character/youmu.tres" id="1_03h26"]
 
 [node name="Youmu" type="Node2D"]
 
