@@ -34,7 +34,7 @@ public class BladeSharpening : YoumuCardModel
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{
 		await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
-		await PowerCmd.Apply<SwordGasPower>(Owner.Creature,this.DynamicVars.Cards.IntValue,Owner.Creature,this);
+		await PowerCmd.Apply<SwordGasPower>(choiceContext, Owner.Creature,this.DynamicVars.Cards.IntValue,Owner.Creature,this);
 		await ToolBox.OpenSword(Owner,this);
 	}
 	protected override void OnUpgrade()

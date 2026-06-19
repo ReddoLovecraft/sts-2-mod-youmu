@@ -34,9 +34,9 @@ public class EvilGhost : YoumuCardModel
 	}
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{
-		await PowerCmd.Apply<WeakPower>(cardPlay.Target,this.DynamicVars.Cards.IntValue,Owner.Creature,this);
-		await PowerCmd.Apply<VulnerablePower>(cardPlay.Target,this.DynamicVars.Cards.IntValue,Owner.Creature,this);
-		await PowerCmd.Apply<FrailPower>(cardPlay.Target,this.DynamicVars.Cards.IntValue,Owner.Creature,this);
+		await PowerCmd.Apply<WeakPower>(choiceContext, cardPlay.Target,this.DynamicVars.Cards.IntValue,Owner.Creature,this);
+		await PowerCmd.Apply<VulnerablePower>(choiceContext, cardPlay.Target,this.DynamicVars.Cards.IntValue,Owner.Creature,this);
+		await PowerCmd.Apply<FrailPower>(choiceContext, cardPlay.Target,this.DynamicVars.Cards.IntValue,Owner.Creature,this);
 	}
 	protected override void OnUpgrade()
 	{

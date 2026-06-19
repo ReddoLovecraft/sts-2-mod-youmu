@@ -71,10 +71,10 @@ namespace TH_Youmu.Scrpits.Powers
             }
 
             Flash();
-            await PowerCmd.Apply<WasteAwayPower>(base.Owner, originalCost, base.Owner, cardPlay.Card);
+            await PowerCmd.Apply<WasteAwayPower>(context, base.Owner, originalCost, base.Owner, cardPlay.Card);
         }
         
-	    public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+	    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
         {
             if (side != base.Owner.Side)
             {

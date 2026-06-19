@@ -45,14 +45,14 @@ namespace TH_Youmu.Scrpits.Powers
 			    return intentType == IntentType.Attack || intentType == IntentType.DeathBlow ? true : false;
 		        });
 		        if(attackFlag)
-		        await PowerCmd.Apply<DexterityPower>(Owner,Amount,Owner,null);
+		        await PowerCmd.Apply<DexterityPower>(choiceContext, Owner,Amount,Owner,null);
 		        bool DefendFlag=mos.Monster.NextMove.Intents.Any(delegate(AbstractIntent intent)
 		        {
 			    IntentType intentType = intent.IntentType;
 			    return intentType == IntentType.Defend ? true : false;
 		        });
 		        if(DefendFlag)
-		        await PowerCmd.Apply<StrengthPower>(Owner,Amount,Owner,null);
+		        await PowerCmd.Apply<StrengthPower>(choiceContext, Owner,Amount,Owner,null);
 		        bool OtherFlag=mos.Monster.NextMove.Intents.Any(delegate(AbstractIntent intent)
 		        {
 			    IntentType intentType = intent.IntentType;

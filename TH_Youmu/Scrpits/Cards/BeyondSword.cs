@@ -61,7 +61,7 @@ public class BeyondSword : YoumuCardModel
 		DynamicVars.Cards.UpgradeValueBy(2);
 	}
 
-	public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+	public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
 	{
 		RefreshBonusDamage();
 		await Task.CompletedTask;

@@ -35,7 +35,7 @@ public class TwoSword : CustomRelicModel
 		  HoverTipFactory.FromKeyword(CardKeyword.Exhaust)
         });
 
-	public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, CombatState combatState)
+	public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
 	{
 		if (side != base.Owner.Creature.Side)
 		{
@@ -58,7 +58,7 @@ public class TwoSword : CustomRelicModel
 		}
 	}
 
- 	public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+ 	public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
 	{
 		if (side == base.Owner.Creature.Side)
 		{
@@ -144,7 +144,7 @@ public class TwoSword : CustomRelicModel
 			return;
 		}
 
-		CombatState? combatState = base.Owner.Creature.CombatState;
+		ICombatState? combatState = base.Owner.Creature.CombatState;
 		if (combatState == null)
 		{
 			return;

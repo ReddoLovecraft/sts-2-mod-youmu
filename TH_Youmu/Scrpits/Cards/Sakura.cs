@@ -35,7 +35,7 @@ public class Sakura : YoumuCardModel
 	{
 		if (card.Owner == base.Owner&&card ==this)
 		{
-			await PowerCmd.Apply<SwordGasPower>(Owner.Creature,this.DynamicVars.Cards.IntValue,null,null);
+			await PowerCmd.Apply<SwordGasPower>(choiceContext, Owner.Creature,this.DynamicVars.Cards.IntValue,null,null);
 		}
 	}
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

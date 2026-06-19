@@ -35,7 +35,7 @@ public class LoseMyMeat : YoumuCardModel
     	list.Add(base.CombatState.CreateCard<SlashYourBone>(Owner));
 		if(base.IsUpgraded)
 			CardCmd.Upgrade(list[0]);
-		await CardPileCmd.AddGeneratedCardsToCombat(list, PileType.Hand, addedByPlayer: true);
+		await CardPileCmd.AddGeneratedCardsToCombat(list, PileType.Hand, base.Owner);
 	}
 	protected override void OnUpgrade()
 	{

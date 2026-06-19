@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -33,12 +34,12 @@ public class GhostMooncake : CustomRelicModel
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<IntangiblePower>(),HoverTipFactory.FromKeyword(CardKeyword.Ethereal)];
 
 	private bool _shouldGrantIntangible;
-	public override async Task BeforeTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+	public override async Task BeforeSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
 	{
 		if (side == base.Owner.Creature.Side && _shouldGrantIntangible)
 		{
 			Flash();
-			await PowerCmd.Apply<IntangiblePower>(Owner.Creature,1,Owner.Creature,null);
+			await PowerCmd.Apply<IntangiblePower>(choiceContext, Owner.Creature,1,Owner.Creature,null);
 		}
 		_shouldGrantIntangible = false;
 		base.Status = RelicStatus.Normal;
@@ -59,7 +60,7 @@ public class GhostMooncake : CustomRelicModel
 		return Task.CompletedTask;
 	}
 
-	public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+	public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
 	{
 		if (side == base.Owner.Creature.Side)
 		{
@@ -72,7 +73,7 @@ public class GhostMooncake : CustomRelicModel
 			return;
 		}
 		Flash();
-		await PowerCmd.Apply<IntangiblePower>(Owner.Creature, 1, Owner.Creature, null);
+		await PowerCmd.Apply<IntangiblePower>(new BlockingPlayerChoiceContext(), Owner.Creature, 1, Owner.Creature, null);
 		_shouldGrantIntangible = false;
 		base.Status = RelicStatus.Normal;
 	}

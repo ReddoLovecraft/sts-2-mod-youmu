@@ -48,7 +48,7 @@ namespace TH_Youmu.Scrpits.Powers
             foreach (CardModel cardModel in cardModels)
             {
                 cardModel.SetToFreeThisTurn();
-                await CardPileCmd.AddGeneratedCardToCombat(cardModel, PileType.Hand, addedByPlayer: true);  
+                await CardPileCmd.AddGeneratedCardToCombat(cardModel, PileType.Hand, base.Owner.Player);  
             }
 		    }
         }

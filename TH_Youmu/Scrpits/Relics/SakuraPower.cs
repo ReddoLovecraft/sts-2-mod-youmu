@@ -35,7 +35,7 @@ public class SakuraPower : CustomRelicModel
 		new EnergyVar(1),
 		new CardsVar(1)
 	};
-   public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+   public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
 	{
 		if (player == base.Owner)
 		{
@@ -45,7 +45,7 @@ public class SakuraPower : CustomRelicModel
 			{
 				list.Add(combatState.CreateCard<TH_Youmu.Scrpits.Cards.Sakura>(base.Owner));
 			}
-			CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardsToCombat(list, PileType.Draw, addedByPlayer: true, CardPilePosition.Random));
+			CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardsToCombat(list, PileType.Draw, base.Owner, CardPilePosition.Random));
 			await Cmd.Wait(1.6f);
 		}
 	}

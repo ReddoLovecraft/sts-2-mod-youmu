@@ -28,7 +28,7 @@ namespace TH_Youmu.Scrpits.Powers
         public override string? CustomBigIconPath => "res://TH_Youmu/ArtWorks/Powers/WSP64.png";
        // protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<IgnitePower>(),HoverTipFactory.FromPower<WraithPower>()];
         public WhiteSwordPower() { }
-        public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+        public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
         {
             if (side == base.Owner.Side)
             {
@@ -62,7 +62,7 @@ namespace TH_Youmu.Scrpits.Powers
         public override string? CustomBigIconPath => "res://TH_Youmu/ArtWorks/Powers/YSP64.png";
        // protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<IgnitePower>(),HoverTipFactory.FromPower<WraithPower>()];
         public YellowSwordPower() { }
-        public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+        public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
         {
             if (side == base.Owner.Side)
             {
@@ -96,7 +96,7 @@ namespace TH_Youmu.Scrpits.Powers
         public override string? CustomBigIconPath => "res://TH_Youmu/ArtWorks/Powers/RSP64.png";    
        // protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<IgnitePower>(),HoverTipFactory.FromPower<WraithPower>()];
         public RedSwordPower() { }
-          public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+          public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
         {
             if (side == base.Owner.Side)
             {

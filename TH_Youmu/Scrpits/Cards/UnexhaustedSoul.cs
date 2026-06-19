@@ -57,7 +57,7 @@ public class UnexhaustedSoul : YoumuCardModel
 		AttackCommand attackCommand =await DamageCmd.Attack(line-cardCount).FromCard(this).Targeting(cardPlay.Target)
 			.WithHitFx("vfx/vfx_starry_impact")
 			.Execute(choiceContext);
-		if(attackCommand.Results.Sum((DamageResult r) => r.TotalDamage + r.OverkillDamage) >= line)
+		if(attackCommand.Results.SelectMany((List<DamageResult> results) => results).Sum((DamageResult r) => r.TotalDamage + r.OverkillDamage) >= line)
 		{
 			CardSelectorPrefs prefs = new CardSelectorPrefs(base.SelectionScreenPrompt, 1);
 			List<CardModel> cardsIn = PileType.Exhaust.GetPile(base.Owner).Cards.ToList();
@@ -74,7 +74,7 @@ public class UnexhaustedSoul : YoumuCardModel
 		this.DynamicVars.Damage.UpgradeValueBy(4);
 	}
 
-	public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+	public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
 	{
 		RefreshExhaustReduction();
 		await Task.CompletedTask;

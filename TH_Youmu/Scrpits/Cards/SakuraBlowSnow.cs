@@ -37,11 +37,11 @@ public class SakuraBlowSnow : YoumuCardModel
 			.WithHitFx("vfx/vfx_starry_impact", null, "slash_attack.mp3")
 			.Execute(choiceContext);
 		CardModel card1 = base.CombatState.CreateCard<Sakura>(base.Owner);
-		CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(card1, PileType.Draw, addedByPlayer: true));
+		CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(card1, PileType.Draw, base.Owner));
 		CardModel card2 = base.CombatState.CreateCard<Sakura>(base.Owner);
-		CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(card2, PileType.Hand, addedByPlayer: true));
+		CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(card2, PileType.Hand, base.Owner));
 		CardModel card3 = base.CombatState.CreateCard<Sakura>(base.Owner);
-		CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(card3, PileType.Discard, addedByPlayer: true));
+		CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(card3, PileType.Discard, base.Owner));
 	}
 	protected override void OnUpgrade()
 	{

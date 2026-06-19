@@ -35,7 +35,7 @@ public class PeaceSword : YoumuCardModel
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{
 		await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
-		await PowerCmd.Apply<SlowPower>(CombatState.HittableEnemies,1,Owner.Creature,this);
+		await PowerCmd.Apply<SlowPower>(choiceContext, CombatState.HittableEnemies,1,Owner.Creature,this);
 		List<PowerModel> debuffs = Owner.Creature.Powers.Where(p => p.Type == PowerType.Debuff).ToList();
 		for (int i = debuffs.Count - 1; i >= 0; i--)
 		{

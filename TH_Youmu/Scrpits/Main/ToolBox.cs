@@ -108,7 +108,7 @@ namespace TH_Youmu.Scripts.Main
 				}
 				else
 				{
-					await CardPileCmd.AddGeneratedCardToCombat(guardCard, PileType.Hand, addedByPlayer: true);
+					await CardPileCmd.AddGeneratedCardToCombat(guardCard, PileType.Hand, target.Player);
 				}
 			 }
 		}
@@ -147,7 +147,7 @@ namespace TH_Youmu.Scripts.Main
                        {
                             player.Creature.GetPower<HalfHalfHalfPower>().ShowEffect();
                             await CardCmd.AutoPlay(choiceContext, card, null);
-                            await CardPileCmd.AddToCombatAndPreview<Clumsy>(player.Creature, PileType.Draw,cnt, addedByPlayer: true);
+                            await CardPileCmd.AddToCombatAndPreview<Clumsy>(player.Creature, PileType.Draw,cnt, player);
                        }
                     }
                     if(card is YoumuCardModel ymc)
@@ -222,22 +222,22 @@ namespace TH_Youmu.Scripts.Main
             if(player.HasPower<WhiteSwordPower>())
             {
                 await PowerCmd.Remove(player.Creature.GetPower<WhiteSwordPower>());
-                await PowerCmd.Apply<YellowSwordPower>(player.Creature,3,player.Creature,cardSource);
+                await PowerCmd.Apply<YellowSwordPower>(new BlockingPlayerChoiceContext(), player.Creature,3,player.Creature,cardSource);
                 return;
             }
             if(player.HasPower<YellowSwordPower>())
             {
                 await PowerCmd.Remove(player.Creature.GetPower<YellowSwordPower>());
-                await PowerCmd.Apply<RedSwordPower>(player.Creature,3,player.Creature,cardSource);
+                await PowerCmd.Apply<RedSwordPower>(new BlockingPlayerChoiceContext(), player.Creature,3,player.Creature,cardSource);
                 return;
             }
             if(player.HasPower<RedSwordPower>())
             {
                 await PowerCmd.Remove(player.Creature.GetPower<RedSwordPower>());
-                await PowerCmd.Apply<RedSwordPower>(player.Creature,3,player.Creature,cardSource);
+                await PowerCmd.Apply<RedSwordPower>(new BlockingPlayerChoiceContext(), player.Creature,3,player.Creature,cardSource);
                 return;
             }
-            await PowerCmd.Apply<WhiteSwordPower>(player.Creature,3,player.Creature,cardSource);
+            await PowerCmd.Apply<WhiteSwordPower>(new BlockingPlayerChoiceContext(), player.Creature,3,player.Creature,cardSource);
         }
 
 

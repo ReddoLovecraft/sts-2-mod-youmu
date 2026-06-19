@@ -35,13 +35,13 @@ public class SixElementClean : YoumuCardModel
 		{
 			await CreatureCmd.TriggerAnim(base.Owner.Creature, "Guard", base.Owner.Character.CastAnimDelay);
 		}
-		await PowerCmd.Apply<SixElementCleanPower>(Owner.Creature,1,Owner.Creature,this);
+		await PowerCmd.Apply<SixElementCleanPower>(choiceContext, Owner.Creature,1,Owner.Creature,this);
 		SfxCmd.Play(YoumuInit.ToModSfxPath("TH_Youmu/ArtWorks/SFX/guard.wav"));
 		await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(base.CombatState)
 			.WithHitFx("vfx/vfx_attack_slash", null, "blunt_attack.mp3")
 			.Execute(choiceContext);
 	}
-	public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+	public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
 	{
 		CardPile? pile = base.Pile;
 		if (pile != null && pile.Type == PileType.Hand && player == base.Owner)

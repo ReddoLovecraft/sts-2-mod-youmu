@@ -48,7 +48,7 @@ public class FutureAlwaysSlash : YoumuCardModel
 		}
 		await ToolBox.Cancel(choiceContext,Owner,this);
 	}
-	public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+	public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
 	{
 		CardPile? pile = base.Pile;
 		if (pile != null && pile.Type != PileType.Deck)

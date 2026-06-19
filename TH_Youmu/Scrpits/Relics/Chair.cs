@@ -30,11 +30,11 @@ public class Chair : CustomRelicModel
     protected override string PackedIconOutlinePath => $"res://TH_Youmu/ArtWorks/Relics/Outlines/{Id.Entry}.png";
     protected override string BigIconPath => $"res://TH_Youmu/ArtWorks/Relics/{Id.Entry}.png";
     public override RelicRarity Rarity => RelicRarity.Event;
-    public override decimal ModifyPowerAmountGiven(PowerModel power, Creature giver, decimal amount, Creature? target, CardModel? cardSource)
+    public override decimal ModifyPowerAmountGivenMultiplicative(PowerModel power, Creature giver, decimal amount, Creature? target, CardModel? cardSource)
 	{
         if(power.Type!=PowerType.Buff)
         {
-            return amount;
+            return 1m;
         }
 		if (cardSource == null)
 		{

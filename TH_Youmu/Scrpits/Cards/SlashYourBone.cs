@@ -58,7 +58,7 @@ public class SlashYourBone : YoumuCardModel
 	{
 		ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
 		RefreshCalculatedDamage();
-		await PowerCmd.Apply<BufferPower>(Owner.Creature,1,Owner.Creature,this);
+		await PowerCmd.Apply<BufferPower>(choiceContext, Owner.Creature,1,Owner.Creature,this);
 		int line=0;
 		if(cardPlay.Target!=null&&cardPlay.Target.Monster.IntendsToAttack)
 		{
@@ -78,13 +78,13 @@ public class SlashYourBone : YoumuCardModel
 				.WithHitVfxNode((Creature t) => NBigSlashImpactVfx.Create(t));
 		await attack.Execute(choiceContext);
 		
-		if(attack.Results.Sum((DamageResult r) => r.TotalDamage + r.OverkillDamage)<line)
+		if(attack.Results.SelectMany((List<DamageResult> results) => results).Sum((DamageResult r) => r.TotalDamage + r.OverkillDamage)<line)
 		{
 			await CardCmd.Exhaust(choiceContext,this);
 		}
 	}
 
-	public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+	public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
 	{
 		RefreshCalculatedDamage();
 		await Task.CompletedTask;
@@ -99,9 +99,9 @@ public class SlashYourBone : YoumuCardModel
 
 		await Task.CompletedTask;
 	}
-	protected override PileType GetResultPileType()
+	protected override PileType GetResultPileTypeForCardPlay()
 	{
-		PileType resultPileType = base.GetResultPileType();
+		PileType resultPileType = base.GetResultPileTypeForCardPlay();
 		if (resultPileType != PileType.Discard)
 		{
 			return resultPileType;

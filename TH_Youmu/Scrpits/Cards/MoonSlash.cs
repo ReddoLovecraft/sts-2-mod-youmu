@@ -1,3 +1,4 @@
+using System.Data;
 using BaseLib.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
@@ -41,10 +42,15 @@ public class MoonSlash : YoumuCardModel
 		await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue*addtionMuti).FromCard(this).Targeting(cardPlay.Target)
 			.WithHitFx("vfx/vfx_attack_slash")
 			.Execute(choiceContext);
+		
 		await ToolBox.Cancel(choiceContext,Owner,this);
-		if(!Owner.HasPower<StiffnessPower>())
+		if(CombatState!=null&&CombatState.Enemies.Count>0&&!Owner.HasPower<StiffnessPower>())
 		{
-			(await PowerCmd.Apply<StiffnessPower>(Owner.Creature,this.DynamicVars["Power"].IntValue,Owner.Creature,this)).SetStiffType(StiffType.Final);
+			var stiffness = await PowerCmd.Apply<StiffnessPower>(choiceContext, Owner.Creature,this.DynamicVars["Power"].IntValue,Owner.Creature,this);
+			if (stiffness != null)
+			{
+				stiffness.SetStiffType(StiffType.Final);
+			}
 		}
 	}
 	protected override void OnUpgrade()

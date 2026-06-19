@@ -35,7 +35,7 @@ public class LeftSword : CustomRelicModel
 		return Owner.GetRelic<TwoSword>() == null;
 	}
 
- 	public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+ 	public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
 	{
 		if (side == base.Owner.Creature.Side&&combatState.RoundNumber <=1)
 		{
@@ -121,7 +121,7 @@ public class LeftSword : CustomRelicModel
 			return;
 		}
 
-		CombatState? combatState = base.Owner.Creature.CombatState;
+		ICombatState? combatState = base.Owner.Creature.CombatState;
 		if (combatState == null)
 		{
 			return;

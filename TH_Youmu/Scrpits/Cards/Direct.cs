@@ -34,8 +34,8 @@ public class Direct : YoumuCardModel
 	}
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{	
-		await PowerCmd.Apply<WeakPower>(base.CombatState.HittableEnemies,this.DynamicVars.Cards.IntValue,Owner.Creature,this);
-		await PowerCmd.Apply<VulnerablePower>(base.CombatState.HittableEnemies,this.DynamicVars.Cards.IntValue,Owner.Creature,this);
+		await PowerCmd.Apply<WeakPower>(choiceContext, base.CombatState.HittableEnemies,this.DynamicVars.Cards.IntValue,Owner.Creature,this);
+		await PowerCmd.Apply<VulnerablePower>(choiceContext, base.CombatState.HittableEnemies,this.DynamicVars.Cards.IntValue,Owner.Creature,this);
 	}	
 	protected override void OnUpgrade()
 	{

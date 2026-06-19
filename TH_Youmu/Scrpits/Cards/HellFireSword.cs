@@ -54,7 +54,7 @@ public class HellFireSword : YoumuCardModel
 			.WithHitFx("vfx/vfx_giant_horizontal_slash")
 			.Execute(choiceContext);
 		NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NFireSmokePuffVfx.Create(Owner.Creature));
-		await CardPileCmd.AddToCombatAndPreview<Burn>(Owner.Creature, PileType.Hand, ResolveEnergyXValue(), addedByPlayer: true);
+		await CardPileCmd.AddToCombatAndPreview<Burn>(Owner.Creature, PileType.Hand, ResolveEnergyXValue(), base.Owner);
 	}
 	protected override void OnUpgrade()
 	{

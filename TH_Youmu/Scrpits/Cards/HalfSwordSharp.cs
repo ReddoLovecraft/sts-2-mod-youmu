@@ -32,7 +32,7 @@ public class HalfSwordSharp : YoumuCardModel
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{
 		await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
-		await PowerCmd.Apply<HalfSwordSharpPower>(base.Owner.Creature,this.DynamicVars.Cards.IntValue,base.Owner.Creature,this);
+		await PowerCmd.Apply<HalfSwordSharpPower>(choiceContext, base.Owner.Creature,this.DynamicVars.Cards.IntValue,base.Owner.Creature,this);
 	}
 	protected override void OnUpgrade()
 	{

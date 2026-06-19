@@ -31,7 +31,7 @@ public class HalfSoulTailsman : CustomRelicModel
     protected override string BigIconPath => $"res://TH_Youmu/ArtWorks/Relics/{Id.Entry}.png";
     public override RelicRarity Rarity => RelicRarity.Rare;
 	bool flag=true;
-   	public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, CombatState combatState)
+   	public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
 	{
 		if (side != base.Owner.Creature.Side)
 		{

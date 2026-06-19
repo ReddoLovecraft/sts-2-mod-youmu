@@ -45,7 +45,7 @@ public class SakuraFlash : YoumuCardModel
 			await CardCmd.Exhaust(choiceContext, item);
 		}
 		int amount=list.Count;
-		await PowerCmd.Apply<IntangiblePower>(Owner.Creature,amount,Owner.Creature,this);
+		await PowerCmd.Apply<IntangiblePower>(choiceContext, Owner.Creature,amount,Owner.Creature,this);
 		await ToolBox.Cancel(choiceContext,Owner,this);
 	}
 	 public override async Task TriggerWhenDerive(PlayerChoiceContext choiceContext,Player player,CardType cardType,int amount,bool IsAny=false)
@@ -53,7 +53,7 @@ public class SakuraFlash : YoumuCardModel
 		for (int i = 0; i < this.DynamicVars.Cards.IntValue; i++)
 		{
 			CardModel card = base.CombatState.CreateCard<Sakura>(base.Owner);
-			CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Draw, addedByPlayer: true));
+			CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Draw, base.Owner));
 		}
     }
 	private static IEnumerable<CardModel> GetSakura(Player owner)

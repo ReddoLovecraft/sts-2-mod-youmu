@@ -35,7 +35,7 @@ public class KesaGiri : YoumuCardModel
 		count*=base.DynamicVars.Cards.IntValue;
 		if(count>0)
 		{
-			await PowerCmd.Apply<SwordGasPower>(Owner.Creature,count,Owner.Creature,this);
+			await PowerCmd.Apply<SwordGasPower>(choiceContext, Owner.Creature,count,Owner.Creature,this);
 		}
 	}
 	protected override void OnUpgrade()

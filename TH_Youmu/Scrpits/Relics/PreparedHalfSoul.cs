@@ -31,7 +31,7 @@ public class PreparedHalfSoul : CustomRelicModel
 		if (target == base.Owner.Creature && result.UnblockedDamage > 0)
 		{
 			int blockGained=Owner.GetRelic<HalfHalfSoul>()==null?result.UnblockedDamage/2:result.UnblockedDamage;
-			await PowerCmd.Apply<BlockNextTurnPower>(base.Owner.Creature, blockGained, base.Owner.Creature, null);
+			await PowerCmd.Apply<BlockNextTurnPower>(choiceContext, base.Owner.Creature, blockGained, base.Owner.Creature, null);
 		}
 	}
 

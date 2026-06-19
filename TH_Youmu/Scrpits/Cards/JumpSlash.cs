@@ -36,7 +36,7 @@ public class JumpSlash : YoumuCardModel
 			.WithHitVfxSpawnedAtBase()
 			.Execute(choiceContext);
 		if(!Owner.HasPower<StiffnessPower>())
-		(await PowerCmd.Apply<StiffnessPower>(Owner.Creature,3,Owner.Creature,this)).SetStiffType(StiffType.None);
+		(await PowerCmd.Apply<StiffnessPower>(choiceContext, Owner.Creature,3,Owner.Creature,this)).SetStiffType(StiffType.None);
 	}
 	protected override void OnUpgrade()
 	{

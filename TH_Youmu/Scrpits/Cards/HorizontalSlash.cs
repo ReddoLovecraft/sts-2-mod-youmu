@@ -35,12 +35,12 @@ public class HorizontalSlash : YoumuCardModel
 		if(Owner.HasPower<RedSwordPower>())
 		{
 			await PowerCmd.Remove(Owner.Creature.GetPower<RedSwordPower>());
-			await PowerCmd.Apply<YellowSwordPower>(Owner.Creature,3,Owner.Creature,this);
+			await PowerCmd.Apply<YellowSwordPower>(choiceContext, Owner.Creature,3,Owner.Creature,this);
 		}
 		else if(Owner.HasPower<YellowSwordPower>())
 		{
 			await PowerCmd.Remove(Owner.Creature.GetPower<YellowSwordPower>());
-			await PowerCmd.Apply<WhiteSwordPower>(Owner.Creature,3,Owner.Creature,this);
+			await PowerCmd.Apply<WhiteSwordPower>(choiceContext, Owner.Creature,3,Owner.Creature,this);
 		}
 		else if(Owner.HasPower<WhiteSwordPower>())
 		{

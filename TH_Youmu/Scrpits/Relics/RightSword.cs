@@ -31,7 +31,7 @@ public class RightSword : CustomRelicModel
         });
     public override RelicModel? GetUpgradeReplacement() => ModelDb.Relic<TwoSword>();
 
-	public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, CombatState combatState)
+	public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
 	{
 		if (side == base.Owner.Creature.Side && combatState.RoundNumber <= 1)
 		{

@@ -35,11 +35,11 @@ public class IntentSeen : YoumuCardModel
 	{
 		if(cardPlay.Target.Monster.IntendsToAttack)
 		{
-			await PowerCmd.Apply<WeakPower>(cardPlay.Target,this.DynamicVars.Cards.IntValue,cardPlay.Target,this);
+			await PowerCmd.Apply<WeakPower>(choiceContext, cardPlay.Target,this.DynamicVars.Cards.IntValue,cardPlay.Target,this);
 			await CreatureCmd.GainBlock(Owner.Creature,this.DynamicVars.Block,cardPlay);
 		}
 		else
-		{	await PowerCmd.Apply<VulnerablePower>(cardPlay.Target,this.DynamicVars.Cards.IntValue,cardPlay.Target,this);
+		{	await PowerCmd.Apply<VulnerablePower>(choiceContext, cardPlay.Target,this.DynamicVars.Cards.IntValue,cardPlay.Target,this);
 			await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
 				.WithHitFx("vfx/vfx_attack_slash")
 				.Execute(choiceContext);

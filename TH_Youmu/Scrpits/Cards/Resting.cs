@@ -35,7 +35,7 @@ public class Resting : YoumuCardModel
 	{
 		await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
 		await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
-		await PowerCmd.Apply<EnergyNextTurnPower>(Owner.Creature,this.DynamicVars.Energy.IntValue,Owner.Creature,this);
+		await PowerCmd.Apply<EnergyNextTurnPower>(choiceContext, Owner.Creature,this.DynamicVars.Energy.IntValue,Owner.Creature,this);
 	}
 	protected override void OnUpgrade()
 	{

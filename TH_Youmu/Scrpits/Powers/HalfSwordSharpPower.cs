@@ -37,7 +37,7 @@ namespace TH_Youmu.Scrpits.Powers
                 return;
             }
             this.Flash();
-			await PowerCmd.Apply<SwordGasPower>(Owner, this.Amount,Owner,null);
+			await PowerCmd.Apply<SwordGasPower>(choiceContext, Owner, this.Amount,Owner,null);
         }
         
     }

@@ -26,8 +26,8 @@ public sealed class BondOfAttachment : YoumuCardModel
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
        await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
-       await PowerCmd.Apply<WeakPower>(base.CombatState.HittableEnemies, base.DynamicVars["Power"].IntValue,Owner.Creature, this);
-       await PowerCmd.Apply<VulnerablePower>(base.CombatState.HittableEnemies, base.DynamicVars["Power"].IntValue,Owner.Creature, this);
+       await PowerCmd.Apply<WeakPower>(choiceContext, base.CombatState.HittableEnemies, base.DynamicVars["Power"].IntValue,Owner.Creature, this);
+       await PowerCmd.Apply<VulnerablePower>(choiceContext, base.CombatState.HittableEnemies, base.DynamicVars["Power"].IntValue,Owner.Creature, this);
        await CardPileCmd.Draw(choiceContext,this.DynamicVars.Cards.IntValue,Owner);
     }
     protected override void OnUpgrade()

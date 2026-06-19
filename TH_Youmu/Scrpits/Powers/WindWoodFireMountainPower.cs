@@ -24,7 +24,7 @@ namespace TH_Youmu.Scrpits.Powers
     {
         public override PowerType Type => PowerType.Buff;
         public override PowerStackType StackType => PowerStackType.Counter;
-        public override bool IsInstanced => true;
+        public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
         public override Color AmountLabelColor => PowerModel._normalAmountLabelColor;
         public override string? CustomPackedIconPath => "res://TH_Youmu/ArtWorks/Powers/WWFMP32.png";
         public override string? CustomBigIconPath => "res://TH_Youmu/ArtWorks/Powers/WWFMP64.png";
@@ -52,10 +52,10 @@ namespace TH_Youmu.Scrpits.Powers
                     await PlayerCmd.GainEnergy(Amount,player);
                     break;
                 case 3:
-                    await PowerCmd.Apply<StrengthPower>(base.Owner, Amount,base.Owner, null);
+                    await PowerCmd.Apply<StrengthPower>(choiceContext, base.Owner, Amount,base.Owner, null);
                     break;
                 case 4:
-                    await PowerCmd.Apply<DexterityPower>(base.Owner, Amount,base.Owner, null);
+                    await PowerCmd.Apply<DexterityPower>(choiceContext, base.Owner, Amount,base.Owner, null);
                     break;
                 default:
                     break;

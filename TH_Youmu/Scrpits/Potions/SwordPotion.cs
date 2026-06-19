@@ -28,6 +28,6 @@ public sealed class SwordPotion : CustomPotionModel
     public override string? CustomPackedOutlinePath => "res://TH_Youmu/ArtWorks/Potions/Outlines/SWORD_POTION.png"; 
     protected override async Task OnUse(PlayerChoiceContext choiceContext, Creature? target)
     {
-       await PowerCmd.Apply<SwordGasPower>(Owner.Creature,9,Owner.Creature,null);
+       await PowerCmd.Apply<SwordGasPower>(choiceContext, Owner.Creature,9,Owner.Creature,null);
     }
 }

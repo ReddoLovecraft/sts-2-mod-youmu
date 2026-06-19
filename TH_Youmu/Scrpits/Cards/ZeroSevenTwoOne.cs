@@ -35,7 +35,7 @@ public class ZeroSevenTwoOne : YoumuCardModel
 		await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).WithHitCount(this.DynamicVars.Cards.IntValue).Targeting(cardPlay.Target)
 			.WithHitFx("vfx/vfx_attack_slash")
 			.Execute(choiceContext);
-		await PowerCmd.Apply<SwordGasPower>(Owner.Creature,this.DynamicVars["Power"].IntValue,Owner.Creature,this);
+		await PowerCmd.Apply<SwordGasPower>(choiceContext, Owner.Creature,this.DynamicVars["Power"].IntValue,Owner.Creature,this);
 		await ToolBox.Cancel(choiceContext,Owner,this);
 	}
 	protected override void OnUpgrade()

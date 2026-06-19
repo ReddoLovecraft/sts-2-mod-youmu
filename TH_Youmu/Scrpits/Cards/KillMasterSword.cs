@@ -35,7 +35,7 @@ public class KillMasterSword : YoumuCardModel
 		await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
 			.WithHitFx("vfx/vfx_attack_slash")
 			.Execute(choiceContext);
-		await PowerCmd.Apply<StrengthPower>(base.Owner.Creature,base.DynamicVars.Cards.IntValue,base.Owner.Creature,this);
+		await PowerCmd.Apply<StrengthPower>(choiceContext, base.Owner.Creature,base.DynamicVars.Cards.IntValue,base.Owner.Creature,this);
 	}
 	protected override void OnUpgrade()
 	{

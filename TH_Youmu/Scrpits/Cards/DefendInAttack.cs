@@ -19,7 +19,7 @@ public class DefendInAttack : YoumuCardModel
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{
 		await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
-		await PowerCmd.Apply<DefendInAttackPower>(Owner.Creature,1,Owner.Creature,this);
+		await PowerCmd.Apply<DefendInAttackPower>(choiceContext, Owner.Creature,1,Owner.Creature,this);
 	}
 	protected override void OnUpgrade()
 	{

@@ -33,8 +33,8 @@ public class BloodSwordSlash : YoumuCardModel
 		await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(base.CombatState)
 			.WithHitFx("vfx/vfx_bloody_impact")
 			.Execute(choiceContext);
-		await PowerCmd.Apply<WeakPower>(base.CombatState.HittableEnemies,this.DynamicVars.Cards.IntValue,Owner.Creature,this);
-		await PowerCmd.Apply<VulnerablePower>(base.CombatState.HittableEnemies,this.DynamicVars.Cards.IntValue,Owner.Creature,this);
+		await PowerCmd.Apply<WeakPower>(choiceContext, base.CombatState.HittableEnemies,this.DynamicVars.Cards.IntValue,Owner.Creature,this);
+		await PowerCmd.Apply<VulnerablePower>(choiceContext, base.CombatState.HittableEnemies,this.DynamicVars.Cards.IntValue,Owner.Creature,this);
 	}
 	protected override void OnUpgrade()
 	{

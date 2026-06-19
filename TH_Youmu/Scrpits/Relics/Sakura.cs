@@ -31,14 +31,14 @@ public class Sakura : CustomRelicModel
     protected override string BigIconPath => $"res://TH_Youmu/ArtWorks/Relics/{Id.Entry}.png";
     public override RelicRarity Rarity => RelicRarity.Common;
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<DemisePower>()];
-    public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+    public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
 	{
 		if (side == base.Owner.Creature.Side )
 		{
 			Creature creature = base.Owner.RunState.Rng.CombatTargets.NextItem(base.Owner.Creature.CombatState.HittableEnemies);
 			if (creature != null)
 			{
-			await PowerCmd.Apply<DemisePower>(creature, 4,Owner.Creature,null);
+			await PowerCmd.Apply<DemisePower>(new BlockingPlayerChoiceContext(), creature, 4,Owner.Creature,null);
 			}
 		}
 	}

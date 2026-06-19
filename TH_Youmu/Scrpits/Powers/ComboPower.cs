@@ -43,13 +43,13 @@ namespace TH_Youmu.Scrpits.Powers
 
             if (amount <= 0)
             {
-                ComboPower created = await PowerCmd.Apply<ComboPower>(target, 1, applier, cardSource);
+                ComboPower created = await PowerCmd.Apply<ComboPower>(new BlockingPlayerChoiceContext(), target, 1, applier, cardSource);
                 created.SetAmountUnsafe(0);
                 created.SetCardType(CardType.None);
                 return created;
             }
 
-            return await PowerCmd.Apply<ComboPower>(target, amount, applier, cardSource);
+            return await PowerCmd.Apply<ComboPower>(new BlockingPlayerChoiceContext(), target, amount, applier, cardSource);
         }
 
         public override PowerType Type => PowerType.Buff;
@@ -70,80 +70,24 @@ namespace TH_Youmu.Scrpits.Powers
             {
                 case CardType.Attack:
                     message = "Attack";
-                    if (MegaCrit.Sts2.Core.Localization.LocManager.Instance.Language == "jpn")
-            {
-                    message = "攻撃";
-            }
-            if (MegaCrit.Sts2.Core.Localization.LocManager.Instance.Language == "zhs")
-            {
-                    message = "攻击";
-            }
                     break;
                 case CardType.Skill:
                     message = "Skill";
-                    if (MegaCrit.Sts2.Core.Localization.LocManager.Instance.Language == "jpn")
-            {
-                    message = "スキル";
-            }
-            if (MegaCrit.Sts2.Core.Localization.LocManager.Instance.Language == "zhs")
-            {
-                    message = "技能";
-            }
                     break;
                 case CardType.Power:
                     message = "Power";
-                    if (MegaCrit.Sts2.Core.Localization.LocManager.Instance.Language == "jpn")
-            {
-                    message = "能力";
-            }
-            if (MegaCrit.Sts2.Core.Localization.LocManager.Instance.Language == "zhs")
-            {
-                    message = "能力";
-            }
                     break;
                 case CardType.None:
                     message = "None";
-                 if (MegaCrit.Sts2.Core.Localization.LocManager.Instance.Language == "jpn")
-            {
-                    message = "無";
-            }
-            if (MegaCrit.Sts2.Core.Localization.LocManager.Instance.Language == "zhs")
-            {
-                    message = "无";
-            }
                     break;
                 case CardType.Status:
                     message = "Status";
-            if (MegaCrit.Sts2.Core.Localization.LocManager.Instance.Language == "jpn")
-            {
-                    message = "状態";
-            }
-            if (MegaCrit.Sts2.Core.Localization.LocManager.Instance.Language == "zhs")
-            {
-                    message = "状态";
-            }
                     break;
                 case CardType.Curse:
                     message = "Curse";
-            if (MegaCrit.Sts2.Core.Localization.LocManager.Instance.Language == "jpn")
-            {
-                    message = "呪い";
-            }
-            if (MegaCrit.Sts2.Core.Localization.LocManager.Instance.Language == "zhs")
-            {
-                    message = "诅咒";
-            }
                     break;
                 default:
                     message = "Unknown";
-                     if (MegaCrit.Sts2.Core.Localization.LocManager.Instance.Language == "jpn")
-            {
-                    message = "未知";
-            }
-            if (MegaCrit.Sts2.Core.Localization.LocManager.Instance.Language == "zhs")
-            {
-                    message = "未知";
-            }
                     break;
             }
 		    ((StringVar)base.DynamicVars["Type"]).StringValue = message;
@@ -152,7 +96,7 @@ namespace TH_Youmu.Scrpits.Powers
 
        
         public ComboPower() { }
-        public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+        public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
         {
             if (side == base.Owner.Side)
             {
@@ -160,7 +104,7 @@ namespace TH_Youmu.Scrpits.Powers
                await ResetCounter();
             }
         }
-        public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, CombatState combatState)
+        public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
 		{
 			if (side != CombatSide.Player)
 			{
@@ -192,7 +136,7 @@ namespace TH_Youmu.Scrpits.Powers
 
         private async Task ResetCounterFallback()
         {
-            await PowerCmd.ModifyAmount(this, -this.Amount, null, null);
+            await PowerCmd.ModifyAmount(new BlockingPlayerChoiceContext(), this, -this.Amount, null, null);
             SetCardType(CardType.None);
         }
             public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
@@ -209,12 +153,12 @@ namespace TH_Youmu.Scrpits.Powers
                         if(lastCardType==CardType.Attack)
                         {
                            power.ShowEffect();
-                           await PowerCmd.Apply<StrengthPower>(Owner,amt,Owner,null);
+                           await PowerCmd.Apply<StrengthPower>(context, Owner,amt,Owner,null);
                         }
                         else if(lastCardType==CardType.Skill)
                         {
                             power.ShowEffect();
-                            await PowerCmd.Apply<DexterityPower>(Owner,amt,Owner,null);
+                            await PowerCmd.Apply<DexterityPower>(context, Owner,amt,Owner,null);
                         }
                         else if(lastCardType==CardType.Power)
                         {
@@ -229,20 +173,20 @@ namespace TH_Youmu.Scrpits.Powers
                         {
                             if(this.Amount>2)
                             {
-                                (await PowerCmd.Apply<StiffnessPower>(Owner,this.Amount,null,null)).SetStiffType(Scripts.Main.StiffType.None);
+                                (await PowerCmd.Apply<StiffnessPower>(context, Owner,this.Amount,null,null)).SetStiffType(Scripts.Main.StiffType.None);
                             }
                         }
                         else
                         {
                             if(this.Amount>1)
                             {
-                                (await PowerCmd.Apply<StiffnessPower>(Owner,this.Amount,null,null)).SetStiffType(Scripts.Main.StiffType.None);
+                                (await PowerCmd.Apply<StiffnessPower>(context, Owner,this.Amount,null,null)).SetStiffType(Scripts.Main.StiffType.None);
                             }
                         }
                     }
                     await ResetCounter();
                 }
-                await PowerCmd.ModifyAmount(this,1,null,null);
+                await PowerCmd.ModifyAmount(context, this,1,null,null);
                 this.SetCardType(cardPlay.Card.Type);
 			}
 		}

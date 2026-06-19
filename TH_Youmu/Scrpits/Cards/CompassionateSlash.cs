@@ -63,7 +63,7 @@ public class CompassionateSlash : YoumuCardModel
 			await CardCmd.Exhaust(choiceContext, item);
 		}
 		if(finalValue>0&&!Owner.HasPower<StiffnessPower>())
-		(await PowerCmd.Apply<StiffnessPower>(base.Owner.Creature, finalValue,Owner.Creature,this)).SetStiffType(StiffType.SpellCard);
+		(await PowerCmd.Apply<StiffnessPower>(choiceContext, base.Owner.Creature, finalValue,Owner.Creature,this)).SetStiffType(StiffType.SpellCard);
 	}
 	private static IEnumerable<CardModel> GetStatusAndCurse(Player owner)
 	{

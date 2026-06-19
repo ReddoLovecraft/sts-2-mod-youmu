@@ -34,13 +34,13 @@ public class HoldBloodSword : YoumuCardModel
         AttackCommand attackCommand = await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
 			.WithHitFx("vfx/vfx_attack_slash")
 			.Execute(choiceContext);
-		int heal =attackCommand.Results.Sum((DamageResult r) => r.TotalDamage + r.OverkillDamage);
+		int heal =attackCommand.Results.SelectMany((List<DamageResult> results) => results).Sum((DamageResult r) => r.TotalDamage + r.OverkillDamage);
 		if (heal > 0)
 		{
 			await CreatureCmd.Heal(base.Owner.Creature, heal);
 		}
 		CardModel card = base.CombatState.CreateCard<Enthralled>(base.Owner);
-		CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Discard, addedByPlayer: true));
+		CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Discard, base.Owner));
 	}
 	protected override void OnUpgrade()
 	{

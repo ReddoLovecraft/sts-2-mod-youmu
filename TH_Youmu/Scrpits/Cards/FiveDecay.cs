@@ -47,7 +47,7 @@ public class FiveDecay : YoumuCardModel
 			.WithHitFx("vfx/vfx_attack_slash")
 			.Execute(choiceContext);
 			if(target!=null&&target.IsAlive)
-			await PowerCmd.Apply<DebilitatePower>(target,this.DynamicVars.Cards.IntValue,Owner.Creature,this);
+			await PowerCmd.Apply<DebilitatePower>(choiceContext, target,this.DynamicVars.Cards.IntValue,Owner.Creature,this);
 		}
 	}
 	public static int GetDebuffKind(Creature target)

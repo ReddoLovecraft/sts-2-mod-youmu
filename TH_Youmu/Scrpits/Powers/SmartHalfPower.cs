@@ -38,13 +38,13 @@ namespace TH_Youmu.Scrpits.Powers
             Flash();
             await PowerCmd.Decrement(this);
         }
-        public override async Task AfterAttack(AttackCommand command)
+        public override async Task AfterAttack(PlayerChoiceContext choiceContext, AttackCommand command)
 	{
 		if (command.Attacker != base.Owner || command.TargetSide == base.Owner.Side || !command.DamageProps.IsPoweredAttack())
 		{
 			return;
 		}
-		List<DamageResult> list = command.Results.ToList();
+		List<DamageResult> list = command.Results.SelectMany((List<DamageResult> results) => results).ToList();
 		List<DamageResult> list2 = list.Where((DamageResult r) => r.Receiver.IsPet).ToList();
 		foreach (DamageResult petHit in list2)
 		{

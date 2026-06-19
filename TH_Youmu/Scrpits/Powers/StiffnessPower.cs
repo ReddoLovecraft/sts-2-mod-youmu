@@ -25,7 +25,7 @@ namespace TH_Youmu.Scrpits.Powers
     {
         public override PowerType Type => PowerType.Debuff;
         public override PowerStackType StackType => PowerStackType.Counter;
-        //public override bool IsInstanced => true;
+        //public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
         public override Color AmountLabelColor => PowerModel._normalAmountLabelColor;
         public override string? CustomPackedIconPath => "res://TH_Youmu/ArtWorks/Powers/SP32.png";
         public override string? CustomBigIconPath => "res://TH_Youmu/ArtWorks/Powers/SP64.png";
@@ -39,36 +39,12 @@ namespace TH_Youmu.Scrpits.Powers
             {
                 case StiffType.None:
                     message = "Normal Level.";
-            if (MegaCrit.Sts2.Core.Localization.LocManager.Instance.Language == "jpn")
-            {
-                    message = "普通レベル";
-            }
-            if (MegaCrit.Sts2.Core.Localization.LocManager.Instance.Language == "zhs")
-            {
-                    message = "普通等级";
-            }
                     break;
                 case StiffType.Final:
                     message = "Ultimate Skill Level";
-                    if (MegaCrit.Sts2.Core.Localization.LocManager.Instance.Language == "jpn")
-            {
-                    message = "必殺技レベル";
-            }
-            if (MegaCrit.Sts2.Core.Localization.LocManager.Instance.Language == "zhs")
-            {
-                    message = "必杀技等级";
-            }
                     break;
                 case StiffType.SpellCard:
                     message = "SpellCard Level.";
-                    if (MegaCrit.Sts2.Core.Localization.LocManager.Instance.Language == "jpn")
-            {
-                    message = "符卡レベル";
-            }
-            if (MegaCrit.Sts2.Core.Localization.LocManager.Instance.Language == "zhs")
-            {
-                    message = "符卡等级";
-            }
                     break;
             }
 		    ((StringVar)base.DynamicVars["Type"]).StringValue = message;
@@ -115,7 +91,7 @@ namespace TH_Youmu.Scrpits.Powers
            }
            return res;
         }
-         public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+         public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
         {
             if (side == base.Owner.Side)
             {

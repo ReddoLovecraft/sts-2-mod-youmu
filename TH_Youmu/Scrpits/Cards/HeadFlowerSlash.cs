@@ -35,7 +35,7 @@ public class HeadFlowerSlash : YoumuCardModel
 		AttackCommand attackCommand = await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
 			.WithHitFx("vfx/vfx_attack_slash")
 			.Execute(choiceContext);
-		await PowerCmd.Apply<SwordGasPower>(Owner.Creature,attackCommand.Results.Sum((DamageResult r) => r.TotalDamage + r.OverkillDamage),Owner.Creature,this);
+		await PowerCmd.Apply<SwordGasPower>(choiceContext, Owner.Creature,attackCommand.Results.SelectMany((List<DamageResult> results) => results).Sum((DamageResult r) => r.TotalDamage + r.OverkillDamage),Owner.Creature,this);
 		await ToolBox.Cancel(choiceContext,Owner,this);
 	}
 	protected override void OnUpgrade()

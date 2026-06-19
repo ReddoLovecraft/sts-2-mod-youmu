@@ -33,7 +33,7 @@ public class SmallSoul : YoumuCardModel
 	{
 		await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
 		SfxCmd.Play(YoumuInit.ToModSfxPath("TH_Youmu/ArtWorks/SFX/characterselect.wav"));
-		await PowerCmd.Apply<SmallSoulPower>(Owner.Creature,1,Owner.Creature,this);
+		await PowerCmd.Apply<SmallSoulPower>(choiceContext, Owner.Creature,1,Owner.Creature,this);
 		if(Owner.HasPower<ComboPower>())
 		{
 			await Owner.Creature.GetPower<ComboPower>().ResetCounter();

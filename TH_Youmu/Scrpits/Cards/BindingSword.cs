@@ -34,7 +34,7 @@ public class BindingSword : YoumuCardModel
 		await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
 			.WithHitFx("vfx/vfx_attack_slash", null, "slash_attack.mp3")
 			.Execute(choiceContext);
-		await PowerCmd.Apply<WeakPower>(cardPlay.Target,this.DynamicVars.Cards.IntValue,Owner.Creature,this);
+		await PowerCmd.Apply<WeakPower>(choiceContext, cardPlay.Target,this.DynamicVars.Cards.IntValue,Owner.Creature,this);
 	}
 	protected override void OnUpgrade()
 	{

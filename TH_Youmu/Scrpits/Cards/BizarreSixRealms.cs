@@ -33,7 +33,7 @@ public class BizarreSixRealms : YoumuCardModel
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{
 		await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
-		await PowerCmd.Apply<BizarreSixRealmsPower>(base.Owner.Creature,base.DynamicVars.Cards.IntValue,base.Owner.Creature,this);
+		await PowerCmd.Apply<BizarreSixRealmsPower>(choiceContext, base.Owner.Creature,base.DynamicVars.Cards.IntValue,base.Owner.Creature,this);
 	}
 	protected override void OnUpgrade()
 	{

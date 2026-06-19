@@ -31,14 +31,14 @@ public class GasBladeSlash : YoumuCardModel
 	{
 		await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
 		.WithHitFx("vfx/vfx_attack_slash", null, "slash_attack.mp3").Execute(choiceContext);;
-		await PowerCmd.Apply<SwordGasPower>(Owner.Creature, 1,Owner.Creature,this);
+		await PowerCmd.Apply<SwordGasPower>(choiceContext, Owner.Creature, 1,Owner.Creature,this);
 	}
 	 public override async Task TriggerWhenDerive(PlayerChoiceContext choiceContext,Player player,CardType cardType,int amount,bool IsAny=false)
     {
        if(Owner.HasPower<SwordGasPower>()&&Owner.Creature.GetPowerAmount<SwordGasPower>()>=3)
        {	
-		  await PowerCmd.ModifyAmount(Owner.Creature.GetPower<SwordGasPower>(),-3,null,null);
-		  await CardPileCmd.AddToCombatAndPreview<GasBladeGreatSpin>(Owner.Creature, PileType.Hand, 1, addedByPlayer: true);
+		  await PowerCmd.ModifyAmount(choiceContext, Owner.Creature.GetPower<SwordGasPower>(),-3,null,null);
+		  await CardPileCmd.AddToCombatAndPreview<GasBladeGreatSpin>(Owner.Creature, PileType.Hand, 1, base.Owner);
        }
        else
        {

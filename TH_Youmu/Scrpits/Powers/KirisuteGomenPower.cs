@@ -26,7 +26,7 @@ namespace TH_Youmu.Scrpits.Powers
     {
         public override PowerType Type => PowerType.Buff;
         public override PowerStackType StackType => PowerStackType.Counter;
-		public override bool IsInstanced => true;
+		public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
         public override Color AmountLabelColor => PowerModel._normalAmountLabelColor;
         public override string? CustomPackedIconPath => "res://TH_Youmu/ArtWorks/Powers/KGP32.png";
         public override string? CustomBigIconPath => "res://TH_Youmu/ArtWorks/Powers/KGP64.png";        
@@ -67,7 +67,7 @@ namespace TH_Youmu.Scrpits.Powers
         Flash();
 		this.Flash();
         NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NGroundFireVfx.Create(base.Owner, VfxColor.Green));
-        await PowerCmd.ModifyAmount(this,1,null,null);
+        await PowerCmd.ModifyAmount(choiceContext, this,1,null,null);
         await Task.CompletedTask;
 	}
     }

@@ -55,7 +55,7 @@ public class SakuraSword : YoumuCardModel
 			{
 				CardCmd.Upgrade(card);
 			}
-			CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Draw, addedByPlayer: true));
+			CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Draw, base.Owner));
 		}
 	}
 	protected override void OnUpgrade()

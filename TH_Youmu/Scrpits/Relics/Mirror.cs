@@ -30,7 +30,7 @@ public class Mirror : CustomRelicModel
     protected override string PackedIconOutlinePath => $"res://TH_Youmu/ArtWorks/Relics/Outlines/{Id.Entry}.png";
     protected override string BigIconPath => $"res://TH_Youmu/ArtWorks/Relics/{Id.Entry}.png";
     public override RelicRarity Rarity => RelicRarity.Uncommon;
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromKeyword(CardModifier.GuardKeyword),HoverTipFactory.FromPower<BufferPower>()];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromKeyword(TH_Youmu.Scrpits.Cards.CardModifier.GuardKeyword),HoverTipFactory.FromPower<BufferPower>()];
     public void ShowEffect()
 	{
 		this.Flash();

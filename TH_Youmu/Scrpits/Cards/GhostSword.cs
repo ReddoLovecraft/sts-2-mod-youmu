@@ -40,11 +40,11 @@ public class GhostSword : YoumuCardModel
 			.Execute(choiceContext);
 		if(cardPlay.Target!=null&&cardPlay.Target.IsAlive)
 		{
-			await PowerCmd.Apply<WeakPower>(cardPlay.Target,this.DynamicVars.Cards.IntValue,Owner.Creature,this);
-			await PowerCmd.Apply<VulnerablePower>(cardPlay.Target,this.DynamicVars.Cards.IntValue,Owner.Creature,this);
+			await PowerCmd.Apply<WeakPower>(choiceContext, cardPlay.Target,this.DynamicVars.Cards.IntValue,Owner.Creature,this);
+			await PowerCmd.Apply<VulnerablePower>(choiceContext, cardPlay.Target,this.DynamicVars.Cards.IntValue,Owner.Creature,this);
 		}
         CardModel card = base.CombatState.CreateCard<Decay>(base.Owner);
-		CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Draw, addedByPlayer: true));
+		CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Draw, base.Owner));
 	}
 	protected override void OnUpgrade()
 	{

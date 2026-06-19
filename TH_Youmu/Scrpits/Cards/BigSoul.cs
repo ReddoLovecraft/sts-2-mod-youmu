@@ -34,7 +34,7 @@ public class BigSoul : YoumuCardModel
 	{
 		await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
 		SfxCmd.Play(YoumuInit.ToModSfxPath("TH_Youmu/ArtWorks/SFX/characterselect.wav"));
-		await PowerCmd.Apply<BigSoulPower>(Owner.Creature,this.DynamicVars.Cards.IntValue,Owner.Creature,this);
+		await PowerCmd.Apply<BigSoulPower>(choiceContext, Owner.Creature,this.DynamicVars.Cards.IntValue,Owner.Creature,this);
 		if(Owner.HasPower<ComboPower>())
 		{
 			await Owner.Creature.GetPower<ComboPower>().ResetCounter();

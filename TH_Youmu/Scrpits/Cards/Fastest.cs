@@ -29,7 +29,7 @@ public class Fastest : YoumuCardModel
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{
 		await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
-		await PowerCmd.Apply<MachineLearningPower>(Owner.Creature,2,Owner.Creature,this);
+		await PowerCmd.Apply<MachineLearningPower>(choiceContext, Owner.Creature,2,Owner.Creature,this);
 	}
 	protected override void OnUpgrade()
 	{

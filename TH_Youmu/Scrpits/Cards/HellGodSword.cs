@@ -39,7 +39,7 @@ public class HellGodSword : YoumuCardModel
 		command.WithHitFx("vfx/hellraiser_attack_vfx", command.HitSfx, command.TmpHitSfx).
 		WithAttackerAnim("Cast", command.Attacker.Player.Character.CastAnimDelay).SpawningHitVfxOnEachCreature().WithHitVfxSpawnedAtBase();
 		await command.Execute(choiceContext);
-        (await PowerCmd.Apply<StiffnessPower>(base.Owner.Creature,2,Owner.Creature,this)).SetStiffType(StiffType.SpellCard);
+        (await PowerCmd.Apply<StiffnessPower>(choiceContext, base.Owner.Creature,2,Owner.Creature,this)).SetStiffType(StiffType.SpellCard);
 	}
 	protected override void OnUpgrade()
 	{

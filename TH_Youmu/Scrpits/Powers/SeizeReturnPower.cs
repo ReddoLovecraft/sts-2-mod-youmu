@@ -28,7 +28,7 @@ namespace TH_Youmu.Scrpits.Powers
         public override Color AmountLabelColor => PowerModel._normalAmountLabelColor;
         public override string? CustomPackedIconPath => "res://TH_Youmu/ArtWorks/Powers/SRP32.png";
         public override string? CustomBigIconPath => "res://TH_Youmu/ArtWorks/Powers/SRP64.png";
-        protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromKeyword(CardModifier.GuardKeyword)];
+        protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromKeyword(TH_Youmu.Scrpits.Cards.CardModifier.GuardKeyword)];
         
         public SeizeReturnPower() { }
 

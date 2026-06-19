@@ -27,7 +27,7 @@ public class HalfEtheralGarden : YoumuCardModel
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{
 		await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
-		await PowerCmd.Apply<HalfEtheralGardenPower>(base.Owner.Creature,1,base.Owner.Creature,this);
+		await PowerCmd.Apply<HalfEtheralGardenPower>(choiceContext, base.Owner.Creature,1,base.Owner.Creature,this);
 	}
 	protected override void OnUpgrade()
 	{

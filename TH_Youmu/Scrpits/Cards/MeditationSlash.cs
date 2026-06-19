@@ -33,7 +33,7 @@ public class MeditationSlash : YoumuCardModel
 		await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
 		.WithHitFx("vfx/vfx_attack_slash", null, "slash_attack.mp3").Execute(choiceContext);;
 		if(!Owner.HasPower<StiffnessPower>())
-		(await PowerCmd.Apply<StiffnessPower>(base.Owner.Creature,1,Owner.Creature,this)).SetStiffType(StiffType.SpellCard);
+		(await PowerCmd.Apply<StiffnessPower>(choiceContext, base.Owner.Creature,1,Owner.Creature,this)).SetStiffType(StiffType.SpellCard);
 	}
 	protected override void OnUpgrade()
 	{

@@ -35,7 +35,7 @@ public class RiseUpSlash : YoumuCardModel
 				.Execute(choiceContext);
 		if(cardPlay.Target!=null&&cardPlay.Target.IsAlive)
 		{
-			await PowerCmd.Apply<PiercingWailPower>(cardPlay.Target,attackCommand.Results.Sum((DamageResult r) => r.TotalDamage + r.OverkillDamage),Owner.Creature,this);
+			await PowerCmd.Apply<PiercingWailPower>(choiceContext, cardPlay.Target,attackCommand.Results.SelectMany((List<DamageResult> results) => results).Sum((DamageResult r) => r.TotalDamage + r.OverkillDamage),Owner.Creature,this);
 		}
 	}
 	protected override void OnUpgrade()

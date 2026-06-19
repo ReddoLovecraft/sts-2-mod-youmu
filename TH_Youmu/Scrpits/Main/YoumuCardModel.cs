@@ -40,14 +40,14 @@ namespace TH_Youmu.Scripts.Main
 
         public override async Task BeforeDamageReceived(PlayerChoiceContext choiceContext, Creature target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource)
 	{
-		if (target == base.Owner.Creature && dealer != null && (props.IsPoweredAttack())&&dealer!=base.Owner.Creature&&this.Keywords.Contains(CardModifier.GuardKeyword))
+		if (target == base.Owner.Creature && dealer != null && (props.IsPoweredAttack())&&dealer!=base.Owner.Creature&&this.Keywords.Contains(TH_Youmu.Scrpits.Cards.CardModifier.GuardKeyword))
 		{
        		CardPile? pile = base.Pile;
 		    if (pile != null && pile.Type == PileType.Hand)
 		    {
 			if(Owner.GetRelic<Mirror>()!=null)
 			{
-				await PowerCmd.Apply<BufferPower>(Owner.Creature,1,Owner.Creature,null);
+				await PowerCmd.Apply<BufferPower>(choiceContext, Owner.Creature,1,Owner.Creature,null);
 			}
 			await CardCmd.AutoPlay(choiceContext, this, dealer);
 			await ToolBox.TriggerWhenGuard(choiceContext, target, amount, props, dealer, cardSource, this);

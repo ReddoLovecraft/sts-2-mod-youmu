@@ -18,17 +18,33 @@ public sealed class MeetReisen : YoumuEventModel
 
 	public override bool IsAllowed(IRunState runState)
 	{
-		return HasAnyYoumu(runState) && runState.CurrentActIndex <= 1;
+		return HasAnyYoumu(runState) && runState.CurrentActIndex <= 1 && runState.Players.All(p => p.Gold >= HealCost);
 	}
 
 	protected override IReadOnlyList<EventOption> GenerateInitialOptions()
 	{
-		return
-		[
-			CreateOption(Heal, "TH_YOUMU-MEET_REISEN.pages.INITIAL.options.HEAL"),
-			CreateOption(Growth, "TH_YOUMU-MEET_REISEN.pages.INITIAL.options.GROWTH"),
-			CreateOption(Random, "TH_YOUMU-MEET_REISEN.pages.INITIAL.options.RANDOM")
-		];
+		bool canHeal = CanAllPlayersAfford(HealCost);
+		bool canGrowth = CanAllPlayersAfford(GrowthCost);
+		bool canRandom = CanAllPlayersAfford(RandomCost);
+
+		EventOption healOption = canHeal
+			? CreateOption(Heal, "TH_YOUMU-MEET_REISEN.pages.INITIAL.options.HEAL")
+			: CreateOption(null, "TH_YOUMU-MEET_REISEN.pages.INITIAL.options.HEAL_LOCKED");
+
+		EventOption growthOption = canGrowth
+			? CreateOption(Growth, "TH_YOUMU-MEET_REISEN.pages.INITIAL.options.GROWTH")
+			: CreateOption(null, "TH_YOUMU-MEET_REISEN.pages.INITIAL.options.GROWTH_LOCKED");
+
+		EventOption randomOption = canRandom
+			? CreateOption(Random, "TH_YOUMU-MEET_REISEN.pages.INITIAL.options.RANDOM")
+			: CreateOption(null, "TH_YOUMU-MEET_REISEN.pages.INITIAL.options.RANDOM_LOCKED");
+
+		return [healOption, growthOption, randomOption];
+	}
+
+	private bool CanAllPlayersAfford(int cost)
+	{
+		return Owner!.RunState.Players.All(p => p.Gold >= cost);
 	}
 
 	private async Task Heal()

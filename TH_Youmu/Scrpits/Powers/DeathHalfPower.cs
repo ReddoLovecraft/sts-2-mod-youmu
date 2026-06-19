@@ -47,7 +47,7 @@ namespace TH_Youmu.Scrpits.Powers
 			return;
 		}
         Flash();
-		await PowerCmd.Apply<DemisePower>(target,result.TotalDamage,null,null);
+		await PowerCmd.Apply<DemisePower>(choiceContext, target,result.TotalDamage,null,null);
         await Task.CompletedTask;
 	}
 }

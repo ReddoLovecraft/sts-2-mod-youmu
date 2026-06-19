@@ -38,13 +38,13 @@ public class GasBladeThrust : YoumuCardModel
 			.Targeting(cardPlay.Target)
 			.WithHitVfxNode((Creature t) => NStabVfx.Create(t, facingEnemies: true, VfxColor.Red))
 			.Execute(choiceContext);
-		await PowerCmd.Apply<SwordGasPower>(Owner.Creature,this.DynamicVars.Cards.IntValue,Owner.Creature,this);
+		await PowerCmd.Apply<SwordGasPower>(choiceContext, Owner.Creature,this.DynamicVars.Cards.IntValue,Owner.Creature,this);
 		CardModel dl = base.CombatState.CreateCard<HorizontalSlash>(base.Owner);
 		if(base.IsUpgraded)
 		{
 			CardCmd.Upgrade(dl);
 		}
-		CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(dl, PileType.Draw, addedByPlayer: true), 0.8f);
+		CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(dl, PileType.Draw, base.Owner), 0.8f);
 		await ToolBox.Derive(choiceContext,Owner,CardType.Attack,1);
 	}
 	protected override void OnUpgrade()

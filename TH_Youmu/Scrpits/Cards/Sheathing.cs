@@ -30,7 +30,7 @@ public class Sheathing : YoumuCardModel
 	{
 	 	await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
 		await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
-		await PowerCmd.Apply<GigantificationPower>(base.Owner.Creature,1,base.Owner.Creature,this);
+		await PowerCmd.Apply<GigantificationPower>(choiceContext, base.Owner.Creature,1,base.Owner.Creature,this);
 	}
 	protected override void OnUpgrade()
 	{
