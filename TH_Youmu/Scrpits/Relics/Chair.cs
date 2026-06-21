@@ -38,14 +38,14 @@ public class Chair : CustomRelicModel
         }
 		if (cardSource == null)
 		{
-			return amount;
+			return 1m;
 		}
         if(giver!=base.Owner.Creature)
         {
-			return amount;
+			return 1m;
 		}
         Flash();
-		return amount * 2m;
+		return 2m;
 	}
 
 }
