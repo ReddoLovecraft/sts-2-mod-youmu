@@ -23,7 +23,9 @@ namespace TH_Youmu.Scripts.Main
 {
 	public abstract class YoumuCardModel : CustomCardModel,IRightClickableCardModel
 	{
-		public override string PortraitPath => $"res://TH_Youmu/ArtWorks/Cards/{Id.Entry}.png";
+		public virtual string DefaultPortraitPath => $"res://TH_Youmu/ArtWorks/Cards/{Id.Entry}.png";
+		public virtual string SFWPath => DefaultPortraitPath;
+		public override string PortraitPath => YoumuModConfig.SfwCardArt ? SFWPath : DefaultPortraitPath;
 		public YoumuCardModel(int baseCost, CardType type, CardRarity rarity, TargetType target, bool showInCardLibrary = true, bool autoAdd = true)
 	 : base(baseCost, type, rarity, target, showInCardLibrary)
 		{

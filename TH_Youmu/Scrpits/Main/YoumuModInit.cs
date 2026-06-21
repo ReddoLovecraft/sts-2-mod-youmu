@@ -1,3 +1,4 @@
+using BaseLib.Config;
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Logging;
@@ -25,6 +26,7 @@ namespace TH_Youmu.Scripts.Main
 	public static void Init()
 	{
 		 TryRegisterGodotScriptAssembly();
+		ModConfigRegistry.Register("TH_Youmu", new YoumuModConfig());
 		_harmony = new Harmony("TH_Youmu");
 		_harmony.PatchAll();
 		Log.Debug("Youmu mod has been loaded successfully");

@@ -1,0 +1,6 @@
+{
+  "TH_YOUMU.mod_title": "魂魄妖夢",
+  "Cards": "カードイラスト",
+  "TH_YOUMU-SFW_CARD_ART.title": "SFWカードイラスト",
+  "TH_YOUMU-SFW_CARD_ART.hover.desc": "有効にすると、カードは SFW イラストを優先して読み込みます。SFWPath を上書きしていないカードは通常のイラストを使用します。"
+}

@@ -18,6 +18,7 @@ namespace TH_Youmu.Scrpits.Cards
 [Pool(typeof(YoumuCardPool))]
 public class LoseMyMeat : YoumuCardModel
 {
+	public override string SFWPath => $"res://TH_Youmu/ArtWorks/Cards/SFW/{Id.Entry}.png";
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 	protected override IEnumerable<IHoverTip> ExtraHoverTips => (new IHoverTip[1]
     {

@@ -22,6 +22,7 @@ namespace TH_Youmu.Scrpits.Cards
 [Pool(typeof(YoumuCardPool))]
 public class HellFlash : YoumuCardModel
 {
+	public override string SFWPath => $"res://TH_Youmu/ArtWorks/Cards/SFW/{Id.Entry}.png";
     protected override IEnumerable<DynamicVar> CanonicalVars => [new EnergyVar(1),new CardsVar(1)];
 		protected override IEnumerable<IHoverTip> ExtraHoverTips => (new IHoverTip[1]
     {

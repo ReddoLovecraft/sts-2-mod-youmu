@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5m5wrkmxxjd4"
-path="res://.godot/imported/1234.png-d72907a2896c099cb57f47dc7283b0e1.ctex"
+uid="uid://yw5n8jgokjo4"
+path="res://.godot/imported/TH_YOUMU-DIRECT.png-891b0c6b76ac8e85c76fcbf338c58cf4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TH_Youmu/ArtWorks/Cards/1234.png"
-dest_files=["res://.godot/imported/1234.png-d72907a2896c099cb57f47dc7283b0e1.ctex"]
+source_file="res://TH_Youmu/ArtWorks/Cards/SFW/TH_YOUMU-DIRECT.png"
+dest_files=["res://.godot/imported/TH_YOUMU-DIRECT.png-891b0c6b76ac8e85c76fcbf338c58cf4.ctex"]
 
 [params]
 

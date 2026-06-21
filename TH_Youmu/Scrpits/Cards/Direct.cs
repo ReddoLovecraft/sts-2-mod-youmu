@@ -20,6 +20,7 @@ namespace TH_Youmu.Scrpits.Cards
 [Pool(typeof(YoumuCardPool))]
 public class Direct : YoumuCardModel
 {
+	public override string SFWPath => $"res://TH_Youmu/ArtWorks/Cards/SFW/{Id.Entry}.png";
 	public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust,CardKeyword.Innate];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new CardsVar(2)];
 	

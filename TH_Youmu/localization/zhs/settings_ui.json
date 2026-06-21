@@ -1,0 +1,6 @@
+{
+  "TH_YOUMU.mod_title": "魂魄妖梦",
+  "Cards": "卡图",
+  "TH_YOUMU-SFW_CARD_ART.title": "SFW卡图",
+  "TH_YOUMU-SFW_CARD_ART.hover.desc": "开启后，卡牌将优先读取 SFW 卡图；未重写 SFWPath 的卡牌仍使用默认卡图。"
+}

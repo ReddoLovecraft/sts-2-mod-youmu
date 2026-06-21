@@ -1,0 +1,6 @@
+{
+  "TH_YOUMU.mod_title": "Konpaku Youmu",
+  "Cards": "Card Art",
+  "TH_YOUMU-SFW_CARD_ART.title": "SFW card art",
+  "TH_YOUMU-SFW_CARD_ART.hover.desc": "When enabled, cards prefer SFW art; cards without an overridden SFWPath still use their default art."
+}
